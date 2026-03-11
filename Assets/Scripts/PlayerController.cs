@@ -79,7 +79,16 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump()
     {
-        rb.linearVelocity = new Vector2(rb.linearVelocityX, jumpSpeed);
+        if (isGrounded) 
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocityX * Time.deltaTime, jumpSpeed);
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }   
 
 }
