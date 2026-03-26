@@ -3,7 +3,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header ("Movement Settings")]
     [SerializeField] private float moveSpeed;
+
+    [Header ("Jump Settings")]
     [SerializeField] public float jumpSpeed;
     [SerializeField] public float fallMultiplier;
     [SerializeField] public float lowJumpMultiplier;
@@ -19,7 +22,6 @@ public class PlayerController : MonoBehaviour
     public float groundCheckRadius;
     public LayerMask groundLayer;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -28,10 +30,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
     }
 
     void FixedUpdate()
@@ -58,7 +59,6 @@ public class PlayerController : MonoBehaviour
 
     void JumpingProcess()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
         if (rb.linearVelocityY < 0)
         {
