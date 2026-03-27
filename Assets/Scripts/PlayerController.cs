@@ -3,25 +3,24 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header ("Movement Settings")]
     [SerializeField] private float moveSpeed;
-
-    [Header ("Jump Settings")]
     [SerializeField] public float jumpSpeed;
     [SerializeField] public float fallMultiplier;
     [SerializeField] public float lowJumpMultiplier;
-
-    private Rigidbody2D rb;
-    private SpriteRenderer spriteRenderer;
-    private Animator animator;
-    private bool isFacingRight = true;
-    private bool isJumping;
-    private bool isGrounded;
-    private float horizontalInput;
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask groundLayer;
 
+    private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
+    private Animator animator;
+    private bool isFacingRight = false;
+    private bool isJumping;
+    private bool isGrounded;
+    private float horizontalInput;
+
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,9 +29,10 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        AnimationProcess();
     }
 
     void FixedUpdate()
@@ -45,12 +45,12 @@ public class PlayerController : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocityY);
 
-        if (isFacingRight && horizontalInput < 0)
+        if (isFacingRight && horizontalInput > 0)
         {
             isFacingRight = false;
             spriteRenderer.flipX = isFacingRight;
         }
-        else if (!isFacingRight && horizontalInput > 0)
+        else if (!isFacingRight && horizontalInput < 0)
         {
             isFacingRight = true;
             spriteRenderer.flipX = isFacingRight;
@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
 
     void JumpingProcess()
     {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
         if (rb.linearVelocityY < 0)
         {
@@ -68,6 +69,18 @@ public class PlayerController : MonoBehaviour
         else if (rb.linearVelocityY > 0 && !isJumping)
         {
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
+    }
+
+    void AnimationProcess()
+    {
+        if (horizontalInput != 0)
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
         }
     }
 
