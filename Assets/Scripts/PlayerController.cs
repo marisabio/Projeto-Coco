@@ -3,13 +3,21 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header ("Movement Settings")]
     [SerializeField] private float moveSpeed;
+    [SerializeField] public float jumpForce;
     [SerializeField] public float jumpSpeed;
+    [SerializeField] public float jumpAcceleration;
+    [SerializeField] public float jumpMaxAcceleration;
     [SerializeField] public float fallMultiplier;
     [SerializeField] public float lowJumpMultiplier;
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask groundLayer;
+
+    [Header ("Input Settings")] 
+    [SerializeField] private InputAction jumpAction;
+    [SerializeField] private InputAction movementAction;
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
@@ -19,30 +27,37 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private float horizontalInput;
 
+    void OnEnable()
+    {
+        jumpAction.Enable();
+        movementAction.Enable();
+    }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-
     }
 
-    // Update is called once per frame
     void Update()
     {
-        AnimationProcess();
-    }
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-    void FixedUpdate()
-    {
+        AnimationProcess();
         MovementProcess();
         JumpingProcess();
     }
 
+    void FixedUpdate()
+    {
+        
+    }
+
     void MovementProcess()
     {
+        horizontalInput = movementAction.ReadValue<float>();
+
         rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocityY);
 
         if (isFacingRight && horizontalInput > 0)
@@ -59,7 +74,24 @@ public class PlayerController : MonoBehaviour
 
     void JumpingProcess()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        if (isGrounded && jumpAction.IsPressed()) 
+        {
+            isJumping = true;
+            Debug.Log("Jump!");
+
+            if (isJumping)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocityX, jumpForce);
+                float velocityRatio = rb.linearVelocityY / jumpSpeed;
+                jumpAcceleration = jumpMaxAcceleration * (1 - velocityRatio);
+                rb.linearVelocityY += jumpAcceleration * Time.deltaTime;
+            }
+        }
+
+        if (jumpAction.WasReleasedThisFrame())
+        {
+            isJumping = false;        
+        }
 
         if (rb.linearVelocityY < 0)
         {
@@ -81,20 +113,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             animator.SetBool("isWalking", false);
-        }
-    }
-
-    public void OnMove(InputValue value)
-    {
-        horizontalInput = value.Get<float>();
-        Debug.Log(horizontalInput);
-    }
-
-    public void OnJump()
-    {
-        if (isGrounded) 
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocityX * Time.deltaTime, jumpSpeed);
         }
     }
 

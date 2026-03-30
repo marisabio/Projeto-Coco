@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7656177239042299154}
   - component: {fileID: 3270954708067345491}
   - component: {fileID: 7003137563456866611}
-  - component: {fileID: 8393282795029069979}
+  - component: {fileID: 6943843049578632830}
   - component: {fileID: 7633373830731755025}
   m_Layer: 0
   m_Name: Player
@@ -112,9 +112,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2245382313370318542, guid: 459e0f981d77b989b9028e343d79a048, type: 3}
+  m_Sprite: {fileID: -1898610364692766652, guid: e1923572177d4344d87e41ae89ee7e89, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.9, y: 2.5}
@@ -138,7 +138,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 6200000, guid: d45559bf67e8db3758c6861f1d805aec, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -184,48 +184,40 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0071982145, y: 0.010796905}
+  m_Offset: {x: 0.058722436, y: -0.012469292}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.9, y: 2.5}
+    oldSize: {x: 2.5333333, y: 2.5333333}
     newSize: {x: 1.9, y: 2.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.8280203, y: 2.363238}
+  m_Size: {x: 1.3704537, y: 2.3632383}
   m_EdgeRadius: 0
---- !u!114 &8393282795029069979
-MonoBehaviour:
+--- !u!95 &6943843049578632830
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7514179161980179468}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard&Mouse
-  m_DefaultActionMap: 
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d3e0e4c870ab70409a9de62f42d0f3a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7633373830731755025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,12 +230,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3e4184c7d8e21053a6cb8e91c001ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpSpeed: 12
-  fallMultiplier: 2.5
-  lowJumpMultiplier: 2
+  moveSpeed: 15
+  jumpForce: 25
+  jumpSpeed: 28
+  jumpAcceleration: 100
+  jumpMaxAcceleration: 200
+  fallMultiplier: 3
+  lowJumpMultiplier: 6
   groundCheck: {fileID: 2312229427370046876}
   groundCheckRadius: 0.8
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
+  jumpAction:
+    m_Name: Jump
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e0063e84-9071-4e17-8197-80ea4afba374
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 65ae304e-fa07-4acd-8a39-33c731f07fd7
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Jump
+      m_Flags: 0
+    m_Flags: 0
+  movementAction:
+    m_Name: Movement
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 057d191d-4990-48f0-bf24-8e0647a0142c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: 0b88be42-df46-4f49-9b6d-cf2f30807c3e
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 47200335-c5ad-41ac-94c0-d9bf965d69d3
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 09e65b9f-3039-4049-b477-f0400f66e125
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    m_Flags: 0
