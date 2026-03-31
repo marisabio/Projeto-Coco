@@ -5,12 +5,14 @@ public class PlayerController : MonoBehaviour
 {
     [Header ("Movement Settings")]
     [SerializeField] private float moveSpeed;
-    [SerializeField] public float jumpForce;
-    [SerializeField] public float jumpSpeed;
-    [SerializeField] public float jumpAcceleration;
-    [SerializeField] public float jumpMaxAcceleration;
-    [SerializeField] public float fallMultiplier;
-    [SerializeField] public float lowJumpMultiplier;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float jumpSpeed;
+    [SerializeField] private float jumpAcceleration;
+    [SerializeField] private float jumpMaxAcceleration;
+    [SerializeField] private float fallMultiplier;
+    [SerializeField] private float lowJumpMultiplier;
+    [SerializeField] private float coyoteTime;
+    [SerializeField] private float jumpBufferTime;
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask groundLayer;
@@ -26,6 +28,8 @@ public class PlayerController : MonoBehaviour
     private bool isJumping;
     private bool isGrounded;
     private float horizontalInput;
+    private float coyoteTimeCounter;
+    private float jumpBufferCounter;
 
     void OnEnable()
     {
@@ -63,20 +67,41 @@ public class PlayerController : MonoBehaviour
         if (isFacingRight && horizontalInput > 0)
         {
             isFacingRight = false;
-            spriteRenderer.flipX = isFacingRight;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (!isFacingRight && horizontalInput < 0)
         {
             isFacingRight = true;
-            spriteRenderer.flipX = isFacingRight;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 
     void JumpingProcess()
     {
-        if (isGrounded && jumpAction.IsPressed()) 
+        if (isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        if (jumpAction.IsPressed())
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+        
+        if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f) 
         {
             isJumping = true;
+            coyoteTimeCounter = 0f;
+            jumpBufferCounter = 0f;
+
             Debug.Log("Jump!");
 
             if (isJumping)
