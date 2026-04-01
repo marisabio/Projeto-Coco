@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
         }
 
-        if (jumpAction.IsPressed())
+        if (jumpAction.WasPressedThisFrame())
         {
             jumpBufferCounter = jumpBufferTime;
         }
@@ -99,6 +99,7 @@ public class PlayerController : MonoBehaviour
         if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f) 
         {
             isJumping = true;
+            animator.SetBool("isJumping", true);
             coyoteTimeCounter = 0f;
             jumpBufferCounter = 0f;
 
@@ -106,16 +107,22 @@ public class PlayerController : MonoBehaviour
 
             if (isJumping)
             {
+                
                 rb.linearVelocity = new Vector2(rb.linearVelocityX, jumpForce);
                 float velocityRatio = rb.linearVelocityY / jumpSpeed;
                 jumpAcceleration = jumpMaxAcceleration * (1 - velocityRatio);
                 rb.linearVelocityY += jumpAcceleration * Time.deltaTime;
             }
+    
+        }        
+        else
+        {
+            animator.SetBool("isJumping", false);
         }
 
         if (jumpAction.WasReleasedThisFrame())
         {
-            isJumping = false;        
+            isJumping = false;
         }
 
         if (rb.linearVelocityY < 0)
@@ -131,7 +138,7 @@ public class PlayerController : MonoBehaviour
 
     void AnimationProcess()
     {
-        if (horizontalInput != 0)
+        if (horizontalInput != 0 && isGrounded)
         {
             animator.SetBool("isWalking", true);
         }
