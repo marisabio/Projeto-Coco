@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        AnimationProcess();
         MovementProcess();
         JumpingProcess();
     }
@@ -74,6 +73,15 @@ public class PlayerController : MonoBehaviour
             isFacingRight = true;
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
+
+        if (horizontalInput != 0 && isGrounded)
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
     }
 
     void JumpingProcess()
@@ -90,35 +98,30 @@ public class PlayerController : MonoBehaviour
         if (jumpAction.WasPressedThisFrame())
         {
             jumpBufferCounter = jumpBufferTime;
+            
+            if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f) 
+            {
+                isJumping = true;
+                animator.SetBool("isJumping", true);
+                coyoteTimeCounter = 0f;
+                jumpBufferCounter = 0f;
+
+                Debug.Log("Jump!");
+
+                if (isJumping)
+                {
+                    rb.linearVelocity = new Vector2(rb.linearVelocityX, jumpForce);
+                    float velocityRatio = rb.linearVelocityY / jumpSpeed;
+                    jumpAcceleration = jumpMaxAcceleration * (1 - velocityRatio);
+                    rb.linearVelocityY += jumpAcceleration * Time.deltaTime;
+                }
+            }        
         }
         else
         {
             jumpBufferCounter -= Time.deltaTime;
         }
         
-        if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f) 
-        {
-            isJumping = true;
-            animator.SetBool("isJumping", true);
-            coyoteTimeCounter = 0f;
-            jumpBufferCounter = 0f;
-
-            Debug.Log("Jump!");
-
-            if (isJumping)
-            {
-                
-                rb.linearVelocity = new Vector2(rb.linearVelocityX, jumpForce);
-                float velocityRatio = rb.linearVelocityY / jumpSpeed;
-                jumpAcceleration = jumpMaxAcceleration * (1 - velocityRatio);
-                rb.linearVelocityY += jumpAcceleration * Time.deltaTime;
-            }
-    
-        }        
-        else
-        {
-            animator.SetBool("isJumping", false);
-        }
 
         if (jumpAction.WasReleasedThisFrame())
         {
@@ -127,24 +130,20 @@ public class PlayerController : MonoBehaviour
 
         if (rb.linearVelocityY < 0)
         {
-            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;        
         }
 
         else if (rb.linearVelocityY > 0 && !isJumping)
         {
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isFalling", true);
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
-    }
 
-    void AnimationProcess()
-    {
-        if (horizontalInput != 0 && isGrounded)
+        if (animator.GetBool("isFalling")  == true && isGrounded)
         {
-            animator.SetBool("isWalking", true);
-        }
-        else
-        {
-            animator.SetBool("isWalking", false);
+            animator.SetBool("isFalling", false);
+            animator.SetBool("isLanding", true);
         }
     }
 
