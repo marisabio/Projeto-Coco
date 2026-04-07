@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    // Essas são todas as variáveis que cuidam do movimento da Dorotéia. O pulo dela tem muita variáveis! É para parecer um pouco mais natural e responsivo
+    // Tudo pode ser mudado no inspector dentro da Unity em si
     [Header ("Movement Settings")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
@@ -17,12 +19,13 @@ public class PlayerController : MonoBehaviour
     public float groundCheckRadius;
     public LayerMask groundLayer;
 
+    // Variáveis de input usando o novo sistema de inputs da Unity. Qualquer coisa, elas também podem ser mudadas no inspector.
     [Header ("Input Settings")] 
     [SerializeField] private InputAction jumpAction;
     [SerializeField] private InputAction movementAction;
 
+    // Variáveis aleatórias 
     private Rigidbody2D rb;
-    private SpriteRenderer spriteRenderer;
     private Animator animator;
     private bool isFacingRight = false;
     private bool isJumping;
@@ -31,6 +34,8 @@ public class PlayerController : MonoBehaviour
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
 
+    // O novo sistema de input da Unity exige que os inputs sejam ativados no código antes de serem usados. 
+    // Isso é útil pq permite que a gente desative eles facilmente durante diálogos e custscenes, se necessário.
     void OnEnable()
     {
         jumpAction.Enable();
@@ -40,7 +45,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }
 
@@ -95,14 +99,14 @@ public class PlayerController : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
         }
 
-        if (jumpAction.WasPressedThisFrame())
+        if (jumpAction.WasPressedThisDynamicUpdate())
         {
             jumpBufferCounter = jumpBufferTime;
             
             if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f) 
             {
                 isJumping = true;
-                animator.SetBool("isJumping", true);
+                animator.Play("Jumping");
                 coyoteTimeCounter = 0f;
                 jumpBufferCounter = 0f;
 
@@ -114,6 +118,7 @@ public class PlayerController : MonoBehaviour
                     float velocityRatio = rb.linearVelocityY / jumpSpeed;
                     jumpAcceleration = jumpMaxAcceleration * (1 - velocityRatio);
                     rb.linearVelocityY += jumpAcceleration * Time.deltaTime;
+                    animator.SetBool("isFalling", true);
                 }
             }        
         }
@@ -126,18 +131,23 @@ public class PlayerController : MonoBehaviour
         if (jumpAction.WasReleasedThisFrame())
         {
             isJumping = false;
+            animator.SetBool("isFalling", true);
         }
 
         if (rb.linearVelocityY < 0)
         {
-            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;        
+            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            isJumping = false;        
+        }
+        else if (rb.linearVelocityY > 0 && !isJumping)
+        {         
+            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            isJumping = false;
         }
 
-        else if (rb.linearVelocityY > 0 && !isJumping)
+        if (!isJumping)
         {
-            animator.SetBool("isJumping", false);
             animator.SetBool("isFalling", true);
-            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
 
         if (animator.GetBool("isFalling")  == true && isGrounded)
@@ -145,6 +155,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isFalling", false);
             animator.SetBool("isLanding", true);
         }
+
     }
 
     void OnDrawGizmosSelected()
