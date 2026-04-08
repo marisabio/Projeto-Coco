@@ -42,31 +42,34 @@ public class PlayerController : MonoBehaviour
         movementAction.Enable();
     }
 
+    // No start a gente instanceia os componentes do Player para serem usados no código.
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
+    // No update vamos deixar os "processos" relacionados a diferentes elementos de gameplay da Dorotéia,
+    // assim como outros elementos de física que precisam ser checados pro frame
     void Update()
     {
+        // Isso aqui checa se tem um chão embaixo da Dorotéia. Bem importante!
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
         MovementProcess();
         JumpingProcess();
     }
 
-    void FixedUpdate()
-    {
-        
-    }
-
+    // Esse trecho de código cuida do processo de movimento da Dorotéia. No caso, o movimento de direita pra esquerda!
     void MovementProcess()
     {
+        // O input da direção será lido aqui e colocado numa variável.
         horizontalInput = movementAction.ReadValue<float>();
 
+        // A velocidade da Dorotéia vai aumentar dependendo da direção do input.
         rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocityY);
 
+        // Código pra flipar o sprite.
         if (isFacingRight && horizontalInput > 0)
         {
             isFacingRight = false;
@@ -78,6 +81,7 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
 
+        // Aqui controla a animação de andar da Dorotéia. O input tem que ser maior que zero e ela precisar estar no chão.
         if (horizontalInput != 0 && isGrounded)
         {
             animator.SetBool("isWalking", true);
@@ -88,8 +92,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Esse trecho aqui cuida do processo de pulo. É meio complexo e tomou um tico mais do meu tempo do que eu gostaria,
+    // mas acho que o resultado final ficou um pouco melhor do que só seguir o tutorial mais básico na web de pulo de platformer.
     void JumpingProcess()
     {
+        //Esse trechinho aqui cuida do "coyote jump" da Dorotéia.
         if (isGrounded)
         {
             coyoteTimeCounter = coyoteTime;
@@ -99,8 +106,11 @@ public class PlayerController : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
         }
 
-        if (jumpAction.WasPressedThisDynamicUpdate())
+        // Esse trecho cuida do processo do pulo no momento em que o jogador aperta o botão de pulo.
+        // Também cuida do buffer do pulo, um tempinho a mais de reação pro pulo pro jogo ficar um pouco mais responsivo.
+        if (jumpAction.WasPressedThisFrame())
         {
+            animator.SetBool("isLanding", false);
             jumpBufferCounter = jumpBufferTime;
             
             if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f) 
@@ -112,6 +122,7 @@ public class PlayerController : MonoBehaviour
 
                 Debug.Log("Jump!");
 
+                // Isso cuida da física do pulo em si. A aceleração do pulo da Dorotéia e tudo mais.
                 if (isJumping)
                 {
                     rb.linearVelocity = new Vector2(rb.linearVelocityX, jumpForce);
@@ -122,22 +133,39 @@ public class PlayerController : MonoBehaviour
                 }
             }        
         }
+        // Esse trechinho faz com que ela entre no ciclo de animação e física do pulo mesmo caso ela não pule,
+        // mas esteja caindo de uma plataforma ou coisa assim. 
+        else if (!jumpAction.WasPressedThisFrame() && !isGrounded)
+        {
+            animator.SetBool("isLanding", false);
+            jumpBufferCounter = jumpBufferTime;
+            
+            if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f) 
+            {
+                isJumping = true;
+                animator.Play("Jumping");
+                coyoteTimeCounter = 0f;
+                jumpBufferCounter = 0f;
+            }        
+        }
         else
         {
             jumpBufferCounter -= Time.deltaTime;
         }
         
-
+        // A aceleração do pulo é interrompida caso o jogador solte o botão antes do ápice do pulo.
         if (jumpAction.WasReleasedThisFrame())
         {
             isJumping = false;
             animator.SetBool("isFalling", true);
         }
 
+        // Esses dois trechinhos do código aceleram a queda do jogador dependendo do ápice do pulo.
+        // Pode parecer meio esquisito mas muito platformer usa isso pra deixar a queda um pouco mas responsiva.
         if (rb.linearVelocityY < 0)
         {
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-            isJumping = false;        
+            isJumping = false;
         }
         else if (rb.linearVelocityY > 0 && !isJumping)
         {         
@@ -145,19 +173,20 @@ public class PlayerController : MonoBehaviour
             isJumping = false;
         }
 
+        // Esse restinho do código determina o resto da animação de pulo, constando a queda e a aterrissagem.
         if (!isJumping)
         {
             animator.SetBool("isFalling", true);
         }
 
-        if (animator.GetBool("isFalling")  == true && isGrounded)
+        if (animator.GetBool("isFalling") == true && isGrounded)
         {
             animator.SetBool("isFalling", false);
             animator.SetBool("isLanding", true);
         }
-
     }
 
+    // Isso aqui é só pra ser possível ver o círculo do detector de chão no editor da Unity.
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
