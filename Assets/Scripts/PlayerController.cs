@@ -135,16 +135,14 @@ public class PlayerController : MonoBehaviour
         }
         // Esse trechinho faz com que ela entre no ciclo de animação e física do pulo mesmo caso ela não pule,
         // mas esteja caindo de uma plataforma ou coisa assim. 
-        else if (!jumpAction.WasPressedThisFrame() && !isGrounded)
+        else if (!isGrounded)
         {
             animator.SetBool("isLanding", false);
             jumpBufferCounter = jumpBufferTime;
             
-            if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f) 
+            if (!isJumping) 
             {
-                isJumping = true;
-                animator.Play("Jumping");
-                coyoteTimeCounter = 0f;
+                animator.Play("Fall Jumping");
                 jumpBufferCounter = 0f;
             }        
         }
