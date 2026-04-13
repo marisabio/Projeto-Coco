@@ -19,6 +19,13 @@ public class PlayerController : MonoBehaviour
     public float groundCheckRadius;
     public LayerMask groundLayer;
 
+    // Variáveis de combate, ainda em desenvolvimento
+    [Header ("Combat Settings")]
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float knockbackForce;
+    [SerializeField] private float knockbackDuration;
+    [SerializeField] private Material knockbackMaterial;
+
     // Variáveis de input usando o novo sistema de inputs da Unity. Qualquer coisa, elas também podem ser mudadas no inspector.
     [Header ("Input Settings")] 
     [SerializeField] private InputAction jumpAction;
@@ -30,6 +37,7 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = false;
     private bool isJumping;
     private bool isGrounded;
+    private float currentHealth;
     private float horizontalInput;
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
@@ -182,6 +190,21 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isFalling", false);
             animator.SetBool("isLanding", true);
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        
+        if (currentHealth <= 0)
+        {
+            Invoke(nameof(Die), knockbackDuration);
+        }
+    }
+    
+    private void Die()
+    {
+        gameObject.SetActive(false);
     }
 
     // Isso aqui é só pra ser possível ver o círculo do detector de chão no editor da Unity.

@@ -244,6 +244,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  maxHealth: 1
+  knockbackForce: 0
+  knockbackDuration: 0
+  knockbackMaterial: {fileID: 2100000, guid: d99cf48638d3f7ea0bfff820e7166f83, type: 2}
   jumpAction:
     m_Name: Jump
     m_Type: 0
