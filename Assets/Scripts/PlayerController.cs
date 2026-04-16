@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     // Variáveis aleatórias 
     private Rigidbody2D rb;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    private Material mainMaterial;
     private bool isFacingRight = false;
     private bool isJumping;
     private bool isGrounded;
@@ -46,8 +48,7 @@ public class PlayerController : MonoBehaviour
     // Isso é útil pq permite que a gente desative eles facilmente durante diálogos e custscenes, se necessário.
     void OnEnable()
     {
-        jumpAction.Enable();
-        movementAction.Enable();
+        EnableCharacterControl();
     }
 
     // No start a gente instanceia os componentes do Player para serem usados no código.
@@ -55,6 +56,9 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        currentHealth = maxHealth;
+        mainMaterial = spriteRenderer.material;
     }
 
     // No update vamos deixar os "processos" relacionados a diferentes elementos de gameplay da Dorotéia,
@@ -201,10 +205,48 @@ public class PlayerController : MonoBehaviour
             Invoke(nameof(Die), knockbackDuration);
         }
     }
+
+    private void StartFlashDamage()
+    {
+        spriteRenderer.material = knockbackMaterial;
+        animator.Play("Damage");
+    }
+    
+    private void EndFlashDamage()
+    {
+        spriteRenderer.material = mainMaterial;
+    }
     
     private void Die()
     {
         gameObject.SetActive(false);
+    }
+
+    private void DisableCharacterControl()
+    {
+        jumpAction.Disable();
+        movementAction.Disable();
+    }
+
+    private void EnableCharacterControl()
+    {
+        jumpAction.Enable();
+        movementAction.Enable();
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Enemy"))
+        {
+            DisableCharacterControl();
+            StartFlashDamage();
+            Debug.Log("Damage!");
+            rb.linearVelocity = Vector2.zero;
+            Vector2 knockbackDirection = (transform.position - other.collider.transform.position).normalized;
+            rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+            Invoke(nameof(EnableCharacterControl), knockbackDuration);
+            Invoke(nameof(EndFlashDamage), knockbackDuration);
+        }
     }
 
     // Isso aqui é só pra ser possível ver o círculo do detector de chão no editor da Unity.
