@@ -208,6 +208,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Método que diminui o HP da Dorotéia ao levar dano. Precisa ser evocado pelo script dos inimigos e obstáculos!
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
@@ -218,6 +219,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Esses dois métodos cuidam da animação de flash da Dorotéia mudando o seu shader.
+    // Queria que fosse mais elegante mas foi como eu consegui fazer pra evocar os métodos com o CollisionEnter
     private void StartFlashDamage()
     {
         spriteRenderer.material = knockbackMaterial;
@@ -229,14 +232,23 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.material = mainMaterial;
     }
     
+    // Esse método cuida da animação e processo de derrota da Dorotéia e faz um reload na cena. 
     private IEnumerator Die()
     {
         Invoke(nameof(DisableCharacterControl), knockbackDuration + 0.1f);
         animator.Play("Dying");
+        animator.SetBool("isDying", true);
+        yield return new WaitForSeconds(knockbackDuration - 0.1f);
+        rb.constraints = RigidbodyConstraints2D.FreezePosition;
         yield return new WaitForSeconds(dyingDuration);     
         gameObject.SetActive(false);
+
+        // Temporário. O jogo final deve precisar de algo mais elegante que isso.
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
     }
 
+    // Esses dois métodos cuidam da ativação e desativação dos controles da Dorotéia.
     private void DisableCharacterControl()
     {
         jumpAction.Disable();
@@ -254,10 +266,12 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    // Tudo relacionado a colliders!
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.collider.CompareTag("Enemy"))
         {
+            // Tudo isso aqui podia ser evocado num método a parte, agora que notei. Se blotar demais, depois faço isso.
             DisableCharacterControl();
             StartFlashDamage();
             Debug.Log("Damage!");
