@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class TestDamage : MonoBehaviour
+public class ObstacleDamage : MonoBehaviour
 {
-    [SerializeField] private float attackDamage;
+    [SerializeField] private float damage;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,7 +21,7 @@ public class TestDamage : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerController>().TakeDamage(attackDamage);
+            other.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
             Debug.Log("Enemy hit!!");
         }
     }

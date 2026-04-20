@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -40,11 +41,13 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Material mainMaterial;
+    private Collider2D col;
     private bool enableHorizontalControl;
     private bool enableVerticalControl;
     private bool isFacingRight = false;
     private bool isJumping;
     private bool isGrounded;
+    private bool isAlive = true;
     private float currentHealth;
     private float horizontalInput;
     private float coyoteTimeCounter;
@@ -63,6 +66,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        col = GetComponent<Collider2D>();
         currentHealth = maxHealth;
         mainMaterial = spriteRenderer.material;
     }
@@ -71,8 +75,11 @@ public class PlayerController : MonoBehaviour
     // assim como outros elementos de física que precisam ser checados pro frame
     void Update()
     {
-        // Isso aqui checa se tem um chão embaixo da Dorotéia. Bem importante!
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        // Isso aqui checa se tem um chão embaixo da Dorotéia se ela estiver viva. Bem importante!
+        if (isAlive)
+        {
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        }
 
         PlayerPrefs.SetFloat("health", currentHealth);
 
@@ -215,6 +222,7 @@ public class PlayerController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            DisableCharacterControl();
             StartCoroutine("Die");
         }
     }
@@ -235,10 +243,13 @@ public class PlayerController : MonoBehaviour
     // Esse método cuida da animação e processo de derrota da Dorotéia e faz um reload na cena. 
     private IEnumerator Die()
     {
-        Invoke(nameof(DisableCharacterControl), knockbackDuration + 0.1f);
+        isAlive = false;
+        isGrounded = true;
         animator.Play("Dying");
         animator.SetBool("isDying", true);
+        Invoke(nameof(DisableCharacterControl), knockbackDuration + 0.1f);
         yield return new WaitForSeconds(knockbackDuration - 0.1f);
+        col.isTrigger = true;
         rb.constraints = RigidbodyConstraints2D.FreezePosition;
         yield return new WaitForSeconds(dyingDuration);     
         gameObject.SetActive(false);
