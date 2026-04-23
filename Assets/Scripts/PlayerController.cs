@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -30,11 +30,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float knockbackDuration;
     [SerializeField] private Material knockbackMaterial;
     [SerializeField] private float dyingDuration;
+    [SerializeField] private float attackRadius;
+    [SerializeField] private float attackDamage;
+    [SerializeField] private float attackDuration;
+    [SerializeField] private Transform attackPosition;
+    [SerializeField] private LayerMask enemyLayer;
 
     // Variáveis de input usando o novo sistema de inputs da Unity. Qualquer coisa, elas também podem ser mudadas no inspector.
     [Header ("Input Settings")] 
     [SerializeField] private InputAction jumpAction;
     [SerializeField] private InputAction movementAction;
+    [SerializeField] private InputAction attackAction;
 
     // Variáveis aleatórias 
     private Rigidbody2D rb;
@@ -52,6 +58,7 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
+    private float attackTimeCounter;
 
     // O novo sistema de input da Unity exige que os inputs sejam ativados no código antes de serem usados. 
     // Isso é útil pq permite que a gente desative eles facilmente durante diálogos e custscenes, se necessário.
@@ -85,6 +92,7 @@ public class PlayerController : MonoBehaviour
 
         MovementProcess();
         JumpingProcess();
+        AttackProcess();
     }
 
     // Esse trecho de código cuida do processo de movimento da Dorotéia. No caso, o movimento de direita pra esquerda!
@@ -215,6 +223,44 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+// Esse método cuida de evocar a rotina de ataque quando o botão for apertado. 
+// Por ser um IEnumerator, ele vai precisar ser chamado no update por outro método. 
+private void AttackProcess()
+    {
+        if (attackAction.WasPressedThisFrame())
+        {
+            StartCoroutine(StartAttack());
+        }
+    }
+// Isso aqui cuida do começo do ataque em si. 
+// Esse outro comentário abaixo e pra Unity não encher o saco sobre performance. 
+// Não se preocupe! A lista vai ter pouco elementos pra ser um problema.
+IEnumerator StartAttack()
+    {
+        List<GameObject> enemies = new List<GameObject>();
+        // animator.Play("Attack");
+        attackTimeCounter = 0f;
+        
+        while (attackTimeCounter <= attackDuration)
+        {
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPosition.position, attackRadius, enemyLayer);
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                if (enemies.Contains(enemy.gameObject))
+                {
+                    continue;
+                }
+                enemies.Add(enemy.gameObject);
+                enemy.GetComponent<EnemyDamageController>().TakeDamage(attackDamage);
+                Debug.Log("Hit!!");
+            }
+        
+            attackTimeCounter += Time.deltaTime;
+
+            yield return null;
+        }
+    }
+
     // Método que diminui o HP da Dorotéia ao levar dano. Precisa ser evocado pelo script dos inimigos e obstáculos!
     public void TakeDamage(float damage)
     {
@@ -294,11 +340,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Isso aqui é só pra ser possível ver o círculo do detector de chão no editor da Unity.
+    // Isso aqui é só pra ser possível ver o raio do detector de ataque e chão no editor da Unity.
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPosition.position, attackRadius);
     }   
 
 }
