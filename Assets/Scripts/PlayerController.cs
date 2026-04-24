@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = false;
     private bool isJumping;
     private bool isGrounded;
-    private bool isAlive = true;
+    private bool isActive = true;
     private float currentHealth;
     private float horizontalInput;
     private float coyoteTimeCounter;
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Isso aqui checa se tem um chão embaixo da Dorotéia se ela estiver viva. Bem importante!
-        if (isAlive)
+        if (isActive)
         {
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         }
@@ -223,22 +223,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-// Esse método cuida de evocar a rotina de ataque quando o botão for apertado. 
-// Por ser um IEnumerator, ele vai precisar ser chamado no update por outro método. 
-private void AttackProcess()
-    {
-        if (attackAction.WasPressedThisFrame())
+    // Esse método cuida de evocar a rotina de ataque quando o botão for apertado. 
+    // Por ser um IEnumerator, ele vai precisar ser chamado no update por outro método. 
+    private void AttackProcess()
         {
-            StartCoroutine(StartAttack());
+            if (attackAction.WasPressedThisFrame())
+            {
+                StartCoroutine(StartAttack());
+            }
+            else
+            {
+                EndAttack();
+            }
         }
-    }
-// Isso aqui cuida do começo do ataque em si. 
-// Esse outro comentário abaixo e pra Unity não encher o saco sobre performance. 
-// Não se preocupe! A lista vai ter pouco elementos pra ser um problema.
-IEnumerator StartAttack()
+    // Isso aqui cuida do começo do ataque em si. 
+    // Esse outro comentário abaixo e pra Unity não encher o saco sobre performance. 
+    // Não se preocupe! A lista vai ter pouco elementos pra ser um problema.
+    IEnumerator StartAttack()
     {
         List<GameObject> enemies = new List<GameObject>();
-        // animator.Play("Attack");
+        isActive = false;
+        isGrounded = true;
+        animator.SetBool("isAttacking", true);
         attackTimeCounter = 0f;
         
         while (attackTimeCounter <= attackDuration)
@@ -259,6 +265,17 @@ IEnumerator StartAttack()
 
             yield return null;
         }
+
+        isActive = true;
+    }
+
+    private void EndAttack()
+    {
+        if (animator.GetBool("isAttacking"))
+        {
+            animator.SetBool("isAttacking", false);
+        }
+       
     }
 
     // Método que diminui o HP da Dorotéia ao levar dano. Precisa ser evocado pelo script dos inimigos e obstáculos!
@@ -289,7 +306,7 @@ IEnumerator StartAttack()
     // Esse método cuida da animação e processo de derrota da Dorotéia e faz um reload na cena. 
     private IEnumerator Die()
     {
-        isAlive = false;
+        isActive = false;
         isGrounded = true;
         animator.Play("Dying");
         animator.SetBool("isDying", true);
@@ -308,6 +325,7 @@ IEnumerator StartAttack()
     // Esses dois métodos cuidam da ativação e desativação dos controles da Dorotéia.
     private void DisableCharacterControl()
     {
+        attackAction.Disable();
         jumpAction.Disable();
         movementAction.Disable();
         enableHorizontalControl = false;
@@ -316,6 +334,7 @@ IEnumerator StartAttack()
 
     private void EnableCharacterControl()
     {
+        attackAction.Enable();
         jumpAction.Enable();
         movementAction.Enable();
         enableHorizontalControl = true;
