@@ -236,9 +236,8 @@ public class PlayerController : MonoBehaviour
                 EndAttack();
             }
         }
+        
     // Isso aqui cuida do começo do ataque em si. 
-    // Esse outro comentário abaixo e pra Unity não encher o saco sobre performance. 
-    // Não se preocupe! A lista vai ter pouco elementos pra ser um problema.
     IEnumerator StartAttack()
     {
         List<GameObject> enemies = new List<GameObject>();
