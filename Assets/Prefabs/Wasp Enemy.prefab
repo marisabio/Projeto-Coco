@@ -201,6 +201,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   attackDamage: 1
+  knockbackForce: 20
+  knockbackDuration: 0.2
+  flashDuration: 0.2
+  knockbackMaterial: {fileID: 2100000, guid: d99cf48638d3f7ea0bfff820e7166f83, type: 2}
+  player: {fileID: 0}
 --- !u!114 &595110698909104498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,7 +219,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
-  deathTime: 0.5
+  deathTime: 0.2
   onTakeDamage:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4293040519863193286}
+        m_TargetAssemblyTypeName: EnemyPatrolController, Assembly-CSharp
+        m_MethodName: KnockbackProcess
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

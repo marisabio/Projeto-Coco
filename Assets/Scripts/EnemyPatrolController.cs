@@ -67,7 +67,7 @@ public class EnemyPatrolController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
 
-        if (other.CompareTag("Patrol Zone"))
+        if (other.CompareTag("Patrol Zone") && isActive)
         {
             if (isFacingRight)
             {

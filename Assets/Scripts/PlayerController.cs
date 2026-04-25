@@ -242,11 +242,10 @@ public class PlayerController : MonoBehaviour
     IEnumerator StartAttack()
     {
         List<GameObject> enemies = new List<GameObject>();
-        isActive = false;
-        isGrounded = true;
         animator.SetBool("isAttacking", true);
         attackTimeCounter = 0f;
-        
+        rb.constraints = RigidbodyConstraints2D.FreezePosition;
+
         while (attackTimeCounter <= attackDuration)
         {
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPosition.position, attackRadius, enemyLayer);
@@ -265,8 +264,6 @@ public class PlayerController : MonoBehaviour
 
             yield return null;
         }
-
-        isActive = true;
     }
 
     private void EndAttack()
