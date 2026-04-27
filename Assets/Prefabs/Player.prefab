@@ -250,13 +250,13 @@ MonoBehaviour:
   knockbackDuration: 0.2
   knockbackMaterial: {fileID: 2100000, guid: d99cf48638d3f7ea0bfff820e7166f83, type: 2}
   dyingDuration: 1.45
-  attackRadius: 1.2
+  attackRadius: 1
   attackDamage: 1
-  attackDuration: 0
+  attackDuration: 0.15
   attackPosition: {fileID: 683708116504920381}
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   jumpAction:
     m_Name: Jump
     m_Type: 0
@@ -314,7 +314,15 @@ MonoBehaviour:
     m_Id: 89c18b05-2306-4e24-bfcf-025158ed87e3
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: e788d1d4-9b73-42a9-bcfa-338c41700cf0
+      m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Attack
+      m_Flags: 0
     m_Flags: 0
 --- !u!1 &9170069101296376927
 GameObject:

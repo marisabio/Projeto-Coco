@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 507552059073fa423bcae38e89927678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 5
   attackDamage: 1
   knockbackForce: 20
   knockbackDuration: 0.2

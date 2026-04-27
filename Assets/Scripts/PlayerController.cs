@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = false;
     private bool isJumping;
     private bool isGrounded;
+    private bool isAttacking = false;
     private bool isActive = true;
     private float currentHealth;
     private float horizontalInput;
@@ -178,7 +179,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("isLanding", false);
                 jumpBufferCounter = jumpBufferTime;
                 
-                if (!isJumping) 
+                if (!isJumping && !isAttacking) 
                 {
                     animator.Play("Fall Jumping");
                     jumpBufferCounter = 0f;
@@ -210,7 +211,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // Esse restinho do código determina o resto da animação de pulo, constando a queda e a aterrissagem.
-            if (!isJumping)
+            if (!isJumping && !isAttacking)
             {
                 animator.SetBool("isFalling", true);
             }
@@ -242,8 +243,8 @@ public class PlayerController : MonoBehaviour
     {
         List<GameObject> enemies = new List<GameObject>();
         animator.SetBool("isAttacking", true);
+        isAttacking =  true;
         attackTimeCounter = 0f;
-        rb.constraints = RigidbodyConstraints2D.FreezePosition;
 
         while (attackTimeCounter <= attackDuration)
         {
@@ -263,6 +264,8 @@ public class PlayerController : MonoBehaviour
 
             yield return null;
         }
+
+        isAttacking =  false;
     }
 
     private void EndAttack()
