@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -30,11 +30,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float knockbackDuration;
     [SerializeField] private Material knockbackMaterial;
     [SerializeField] private float dyingDuration;
+    [SerializeField] private float attackRadius;
+    [SerializeField] private float attackDamage;
+    [SerializeField] private float attackDuration;
+    [SerializeField] private Transform attackPosition;
+    [SerializeField] private LayerMask enemyLayer;
 
     // Variáveis de input usando o novo sistema de inputs da Unity. Qualquer coisa, elas também podem ser mudadas no inspector.
     [Header ("Input Settings")] 
     [SerializeField] private InputAction jumpAction;
     [SerializeField] private InputAction movementAction;
+    [SerializeField] private InputAction attackAction;
 
     // Variáveis aleatórias 
     private Rigidbody2D rb;
@@ -47,11 +53,13 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = false;
     private bool isJumping;
     private bool isGrounded;
-    private bool isAlive = true;
+    private bool isAttacking = false;
+    private bool isActive = true;
     private float currentHealth;
     private float horizontalInput;
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
+    private float attackTimeCounter;
 
     // O novo sistema de input da Unity exige que os inputs sejam ativados no código antes de serem usados. 
     // Isso é útil pq permite que a gente desative eles facilmente durante diálogos e custscenes, se necessário.
@@ -76,7 +84,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Isso aqui checa se tem um chão embaixo da Dorotéia se ela estiver viva. Bem importante!
-        if (isAlive)
+        if (isActive)
         {
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         }
@@ -85,6 +93,7 @@ public class PlayerController : MonoBehaviour
 
         MovementProcess();
         JumpingProcess();
+        AttackProcess();
     }
 
     // Esse trecho de código cuida do processo de movimento da Dorotéia. No caso, o movimento de direita pra esquerda!
@@ -170,7 +179,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("isLanding", false);
                 jumpBufferCounter = jumpBufferTime;
                 
-                if (!isJumping) 
+                if (!isJumping && !isAttacking) 
                 {
                     animator.Play("Fall Jumping");
                     jumpBufferCounter = 0f;
@@ -202,7 +211,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // Esse restinho do código determina o resto da animação de pulo, constando a queda e a aterrissagem.
-            if (!isJumping)
+            if (!isJumping && !isAttacking)
             {
                 animator.SetBool("isFalling", true);
             }
@@ -213,6 +222,59 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("isLanding", true);
             }
         }
+    }
+
+    // Esse método cuida de evocar a rotina de ataque quando o botão for apertado. 
+    // Por ser um IEnumerator, ele vai precisar ser chamado no update por outro método. 
+    private void AttackProcess()
+        {
+            if (attackAction.WasPressedThisFrame())
+            {
+                StartCoroutine(StartAttack());
+            }
+            else
+            {
+                EndAttack();
+            }
+        }
+        
+    // Isso aqui cuida do começo do ataque em si. 
+    IEnumerator StartAttack()
+    {
+        List<GameObject> enemies = new List<GameObject>();
+        animator.SetBool("isAttacking", true);
+        isAttacking =  true;
+        attackTimeCounter = 0f;
+
+        while (attackTimeCounter <= attackDuration)
+        {
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPosition.position, attackRadius, enemyLayer);
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                if (enemies.Contains(enemy.gameObject))
+                {
+                    continue;
+                }
+                enemies.Add(enemy.gameObject);
+                enemy.GetComponent<EnemyDamageController>().TakeDamage(attackDamage);
+                Debug.Log("Hit!!");
+            }
+        
+            attackTimeCounter += Time.deltaTime;
+
+            yield return null;
+        }
+
+        isAttacking =  false;
+    }
+
+    private void EndAttack()
+    {
+        if (animator.GetBool("isAttacking"))
+        {
+            animator.SetBool("isAttacking", false);
+        }
+       
     }
 
     // Método que diminui o HP da Dorotéia ao levar dano. Precisa ser evocado pelo script dos inimigos e obstáculos!
@@ -243,7 +305,7 @@ public class PlayerController : MonoBehaviour
     // Esse método cuida da animação e processo de derrota da Dorotéia e faz um reload na cena. 
     private IEnumerator Die()
     {
-        isAlive = false;
+        isActive = false;
         isGrounded = true;
         animator.Play("Dying");
         animator.SetBool("isDying", true);
@@ -262,6 +324,7 @@ public class PlayerController : MonoBehaviour
     // Esses dois métodos cuidam da ativação e desativação dos controles da Dorotéia.
     private void DisableCharacterControl()
     {
+        attackAction.Disable();
         jumpAction.Disable();
         movementAction.Disable();
         enableHorizontalControl = false;
@@ -270,6 +333,7 @@ public class PlayerController : MonoBehaviour
 
     private void EnableCharacterControl()
     {
+        attackAction.Enable();
         jumpAction.Enable();
         movementAction.Enable();
         enableHorizontalControl = true;
@@ -294,11 +358,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Isso aqui é só pra ser possível ver o círculo do detector de chão no editor da Unity.
+    // Isso aqui é só pra ser possível ver o raio do detector de ataque e chão no editor da Unity.
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPosition.position, attackRadius);
     }   
 
 }
