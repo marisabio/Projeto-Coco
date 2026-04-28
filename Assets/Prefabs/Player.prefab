@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 7002916330519232554}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.15, y: -1.04, z: 0}
+  m_LocalPosition: {x: 0.028, y: -0.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -185,17 +185,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.16730005, y: -0.012469292}
+  m_Offset: {x: 0.00035259128, y: -0.00087726116}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5333333, y: 2.5333333}
+    oldSize: {x: 1.1875, y: 1.1875}
     newSize: {x: 1.9, y: 2.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.9136789, y: 2.3632383}
+  m_Size: {x: 0.579784, y: 1.1445115}
   m_EdgeRadius: 0
 --- !u!95 &6943843049578632830
 Animator:
@@ -231,9 +231,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3e4184c7d8e21053a6cb8e91c001ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 15
-  jumpForce: 25
-  jumpSpeed: 28
+  moveSpeed: 10
+  jumpForce: 20
+  jumpSpeed: 22
   jumpAcceleration: 100
   jumpMaxAcceleration: 200
   fallMultiplier: 3
@@ -241,7 +241,7 @@ MonoBehaviour:
   coyoteTime: 0.2
   jumpBufferTime: 0.1
   groundCheck: {fileID: 2312229427370046876}
-  groundCheckRadius: 0.38
+  groundCheckRadius: 0.23
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -249,8 +249,8 @@ MonoBehaviour:
   knockbackForce: 23
   knockbackDuration: 0.2
   knockbackMaterial: {fileID: 2100000, guid: d99cf48638d3f7ea0bfff820e7166f83, type: 2}
-  dyingDuration: 1.45
-  attackRadius: 1
+  dyingDuration: 1.34
+  attackRadius: 0.58
   attackDamage: 1
   attackDuration: 0.15
   attackPosition: {fileID: 683708116504920381}
@@ -349,7 +349,7 @@ Transform:
   m_GameObject: {fileID: 9170069101296376927}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6, y: 0, z: 0}
+  m_LocalPosition: {x: 0.284, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
