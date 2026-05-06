@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InputAction jumpAction;
     [SerializeField] private InputAction movementAction;
     [SerializeField] private InputAction attackAction;
+    [SerializeField] private InputAction interactAction;
 
     // Variáveis aleatórias 
     private Rigidbody2D rb;
@@ -55,6 +56,8 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool isAttacking = false;
     private bool isActive = true;
+    private bool isInteracting = false;
+    private bool canInteract = false;
     private float currentHealth;
     private float horizontalInput;
     private float coyoteTimeCounter;
@@ -94,10 +97,11 @@ public class PlayerController : MonoBehaviour
         MovementProcess();
         JumpingProcess();
         AttackProcess();
+        InteractProcess();
     }
 
     // Esse trecho de código cuida do processo de movimento da Dorotéia. No caso, o movimento de direita pra esquerda!
-    void MovementProcess()
+    private void MovementProcess()
     {
         if (enableHorizontalControl)
         {
@@ -133,7 +137,7 @@ public class PlayerController : MonoBehaviour
 
     // Esse trecho aqui cuida do processo de pulo. É meio complexo e tomou um tico mais do meu tempo do que eu gostaria,
     // mas acho que o resultado final ficou um pouco melhor do que só seguir o tutorial mais básico na web de pulo de platformer.
-    void JumpingProcess()
+    private void JumpingProcess()
     {
         if (enableVerticalControl)
         {
@@ -224,6 +228,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    private void InteractProcess()
+    {
+        if (interactAction.WasPressedThisFrame() && canInteract)
+        {
+            isInteracting = true;
+        }
+
+    }
+
     // Esse método cuida de evocar a rotina de ataque quando o botão for apertado. 
     // Por ser um IEnumerator, ele vai precisar ser chamado no update por outro método. 
     private void AttackProcess()
@@ -239,7 +253,7 @@ public class PlayerController : MonoBehaviour
         }
         
     // Isso aqui cuida do começo do ataque em si. 
-    IEnumerator StartAttack()
+    private IEnumerator StartAttack()
     {
         List<GameObject> enemies = new List<GameObject>();
         animator.SetBool("isAttacking", true);
@@ -327,6 +341,7 @@ public class PlayerController : MonoBehaviour
         attackAction.Disable();
         jumpAction.Disable();
         movementAction.Disable();
+        interactAction.Disable();
         enableHorizontalControl = false;
         enableVerticalControl = false;
     }
@@ -336,6 +351,7 @@ public class PlayerController : MonoBehaviour
         attackAction.Enable();
         jumpAction.Enable();
         movementAction.Enable();
+        interactAction.Enable();
         enableHorizontalControl = true;
         enableVerticalControl = true;
 
@@ -358,8 +374,32 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    // Um OnTriggerStay para objetos interativos
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Interactable"))
+        {
+            canInteract = true;
+
+            if (isInteracting)
+            {
+                other.GetComponent<InteractableController>().Interact();
+                isInteracting = false;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Interactable"))
+        {
+            canInteract = false;
+        }
+    }
+
     // Isso aqui é só pra ser possível ver o raio do detector de ataque e chão no editor da Unity.
-    void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);

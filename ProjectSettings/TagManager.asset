@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Patrol Zone
+  - Interactable
   layers:
   - Default
   - TransparentFX
