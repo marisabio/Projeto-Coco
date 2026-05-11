@@ -4,11 +4,11 @@ using TMPro;
 public class HealthUI : MonoBehaviour
 {
     float playerHealth;
-    TMP_Text healthText;
+    private Animator animator;
 
     void Awake()
     {
-        healthText = GetComponent<TMP_Text>();
+        animator = GetComponent<Animator>();
     }
 
     void Start()
@@ -20,6 +20,18 @@ public class HealthUI : MonoBehaviour
     {
         playerHealth = PlayerPrefs.GetFloat("health");
         int health = Mathf.FloorToInt(playerHealth);
-        healthText.text = health.ToString();
+        
+        switch(health)
+        {
+            case 2:
+            animator.Play("Damage 01");
+            break;
+            case 1:
+            animator.Play("Damage 02");
+            break;
+            case <= 0:
+            animator.Play("Damage 03");
+            break;
+        }
     }
 }

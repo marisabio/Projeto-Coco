@@ -238,7 +238,7 @@ MonoBehaviour:
   jumpMaxAcceleration: 200
   fallMultiplier: 3
   lowJumpMultiplier: 6
-  coyoteTime: 0.2
+  coyoteTime: 0.1
   jumpBufferTime: 0.1
   groundCheck: {fileID: 2312229427370046876}
   groundCheckRadius: 0.23
@@ -246,7 +246,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   maxHealth: 3
-  knockbackForce: 23
+  knockbackForce: 16
   knockbackDuration: 0.2
   knockbackMaterial: {fileID: 2100000, guid: d99cf48638d3f7ea0bfff820e7166f83, type: 2}
   dyingDuration: 1.34
@@ -306,6 +306,30 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Movement
       m_Flags: 8
+    - m_Name: 1D Axis
+      m_Id: 9aefe7b9-4b94-4608-be9c-5653abb82373
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: cfe9078e-0068-4dbc-a890-6f523f15c400
+      m_Path: <Keyboard>/leftArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 111fcefe-a1fd-4704-8ba0-9ebab26b6046
+      m_Path: <Keyboard>/rightArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
     m_Flags: 0
   attackAction:
     m_Name: Attack
@@ -324,6 +348,24 @@ MonoBehaviour:
       m_Action: Attack
       m_Flags: 0
     m_Flags: 0
+  interactAction:
+    m_Name: Interact
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 80935fc9-9503-4964-8f7d-77498d5bf215
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: fc6d0e4d-e5cf-4661-b5a1-b35e8d48b17a
+      m_Path: <Keyboard>/f
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Interact
+      m_Flags: 0
+    m_Flags: 0
+  unlockDoubleJump: 0
 --- !u!1 &9170069101296376927
 GameObject:
   m_ObjectHideFlags: 0

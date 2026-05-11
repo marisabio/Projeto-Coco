@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     // Variáveis de combate, ainda em desenvolvimento
     [Header ("Combat Settings")]
     [SerializeField] private float maxHealth;
+    [SerializeField] private float currentHealth;
     [SerializeField] private float knockbackForce;
     [SerializeField] private float knockbackDuration;
     [SerializeField] private Material knockbackMaterial;
@@ -43,6 +44,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InputAction attackAction;
     [SerializeField] private InputAction interactAction;
 
+    [Header ("Unlock Settings")] 
+    [SerializeField] private bool unlockDoubleJump;
+
     // Variáveis aleatórias 
     private Rigidbody2D rb;
     private Animator animator;
@@ -53,12 +57,13 @@ public class PlayerController : MonoBehaviour
     private bool enableVerticalControl;
     private bool isFacingRight = false;
     private bool isJumping;
+    private bool hasJumped = false;
+    private bool canDoubleJump = false;
     private bool isGrounded;
     private bool isAttacking = false;
     private bool isActive = true;
     private bool isInteracting = false;
     private bool canInteract = false;
-    private float currentHealth;
     private float horizontalInput;
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
@@ -78,8 +83,16 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
-        currentHealth = maxHealth;
         mainMaterial = spriteRenderer.material;
+
+        if (PlayerPrefs.GetFloat("health") <= 0)
+        {
+            currentHealth = maxHealth;
+        }
+        else
+        {
+            currentHealth = PlayerPrefs.GetFloat("health");
+        }
     }
 
     // No update vamos deixar os "processos" relacionados a diferentes elementos de gameplay da Dorotéia,
@@ -158,7 +171,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("isLanding", false);
                 jumpBufferCounter = jumpBufferTime;
                 
-                if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f) 
+                if ((coyoteTimeCounter > 0f && jumpBufferCounter > 0f) || canDoubleJump) 
                 {
                     isJumping = true;
                     animator.Play("Jumping");
@@ -173,8 +186,25 @@ public class PlayerController : MonoBehaviour
                         jumpAcceleration = jumpMaxAcceleration * (1 - velocityRatio);
                         rb.linearVelocityY += jumpAcceleration * Time.deltaTime;
                         animator.SetBool("isFalling", true);
+                        hasJumped = true;
                     }
-                }        
+                }
+
+                if (unlockDoubleJump)
+                {
+                    if (hasJumped)
+                    {
+                        if (!canDoubleJump)
+                        {
+                            canDoubleJump = true;
+                        }
+                        else
+                        {
+                            canDoubleJump = false;
+                            hasJumped = false;
+                        }
+                    }
+                }
             }
             // Esse trechinho faz com que ela entre no ciclo de animação e física do pulo mesmo caso ela não pule,
             // mas esteja caindo de uma plataforma ou coisa assim. 
@@ -224,6 +254,7 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool("isFalling", false);
                 animator.SetBool("isLanding", true);
+                hasJumped = false;
             }
         }
     }
