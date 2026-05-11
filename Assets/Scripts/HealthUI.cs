@@ -23,6 +23,9 @@ public class HealthUI : MonoBehaviour
         
         switch(health)
         {
+            case >= 3:
+            animator.Play("Full Health");
+            break;
             case 2:
             animator.Play("Damage 01");
             break;
