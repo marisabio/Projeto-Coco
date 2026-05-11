@@ -395,7 +395,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.775725
+  orthographic size: 4.6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1420,6 +1420,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1583986415
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583986408}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 137daa2ca4ec449cd87fcd7e377ae46a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2046718772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,11 +1678,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3784953885555242263, guid: 3bf39762d478b7dbcb8a1bc4d7395899, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 306
+      value: 218
       objectReference: {fileID: 0}
     - target: {fileID: 3784953885555242263, guid: 3bf39762d478b7dbcb8a1bc4d7395899, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -274
+      value: -160
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268949850222582831, guid: 3bf39762d478b7dbcb8a1bc4d7395899, type: 3}
+      propertyPath: m_Name
+      value: Health UI
       objectReference: {fileID: 0}
     - target: {fileID: 8486599388687365430, guid: 3bf39762d478b7dbcb8a1bc4d7395899, type: 3}
       propertyPath: m_Name
@@ -1673,6 +1699,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4268949850222582831, guid: 3bf39762d478b7dbcb8a1bc4d7395899, type: 3}
       insertIndex: 1
       addedObject: {fileID: 1583986413}
+    - targetCorrespondingSourceObject: {fileID: 4268949850222582831, guid: 3bf39762d478b7dbcb8a1bc4d7395899, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1583986415}
   m_SourcePrefab: {fileID: 100100000, guid: 3bf39762d478b7dbcb8a1bc4d7395899, type: 3}
 --- !u!1001 &5670687128974579883
 PrefabInstance:
@@ -1743,6 +1772,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1748669830891804523, guid: f9d86bc6d7f575a469ad764b4095a838, type: 3}
+      propertyPath: Lens.OrthographicSize
+      value: 4.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1748669830891804523, guid: f9d86bc6d7f575a469ad764b4095a838, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
