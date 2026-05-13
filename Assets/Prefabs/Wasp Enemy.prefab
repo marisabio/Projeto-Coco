@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2218431009130064772}
   - component: {fileID: 4068805205543974154}
   - component: {fileID: 4445250367315286801}
-  - component: {fileID: 4293040519863193286}
   - component: {fileID: 595110698909104498}
+  - component: {fileID: 5353098876109158510}
   m_Layer: 7
   m_Name: Wasp Enemy
   m_TagString: Enemy
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 3373789896305743148, guid: 6f372651da25f0f74aeb96441c1e4226, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -160,11 +160,11 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 4
 --- !u!95 &4445250367315286801
 Animator:
   serializedVersion: 7
@@ -187,25 +187,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4293040519863193286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1387000031182655996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 507552059073fa423bcae38e89927678, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  attackDamage: 1
-  knockbackForce: 15
-  knockbackDuration: 0.2
-  flashDuration: 0.2
-  knockbackMaterial: {fileID: 2100000, guid: d99cf48638d3f7ea0bfff820e7166f83, type: 2}
-  player: {fileID: 0}
 --- !u!114 &595110698909104498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,8 +204,8 @@ MonoBehaviour:
   onTakeDamage:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4293040519863193286}
-        m_TargetAssemblyTypeName: EnemyPatrolController, Assembly-CSharp
+      - m_Target: {fileID: 5353098876109158510}
+        m_TargetAssemblyTypeName: EnemyChaserController, Assembly-CSharp
         m_MethodName: KnockbackProcess
         m_Mode: 1
         m_Arguments:
@@ -235,3 +216,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5353098876109158510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387000031182655996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f3df0543db88a98d86dd316e70cfcfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  attackDamage: 1
+  minDistance: 8
+  activeDistance: 4
+  attackTimeBuffer: 2
+  knockbackForce: 15
+  knockbackDuration: 0.2
+  flashDuration: 0.2
+  knockbackMaterial: {fileID: 2100000, guid: d99cf48638d3f7ea0bfff820e7166f83, type: 2}
+  player: {fileID: 0}
