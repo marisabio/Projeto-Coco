@@ -85,7 +85,7 @@ public class EnemyPatrolController : MonoBehaviour
     // Causa dano pro jogador
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && isActive)
         {
             other.gameObject.GetComponent<PlayerController>().TakeDamage(attackDamage);
             Debug.Log("Enemy hit!!");

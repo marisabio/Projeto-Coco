@@ -5,6 +5,7 @@ public class EnemyChaserController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float attackDamage;
     [SerializeField] private float minDistance;
+    [SerializeField] private float activeDistance;
     [SerializeField] private float attackTimeBuffer;
     [SerializeField] private float knockbackForce;
     [SerializeField] private float knockbackDuration;
@@ -15,6 +16,9 @@ public class EnemyChaserController : MonoBehaviour
     private Vector2 playerPosition;
     private Vector2 enemyPosition;
     private float attackTimeCounter;
+    private bool hasAttacked = false;
+    private bool isActive = false;
+    private bool isAlive = true;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     private float direction = 1;
@@ -37,6 +41,24 @@ public class EnemyChaserController : MonoBehaviour
 
         // Se lembre de estudar sobre Vector2.Dot depois. Importante!!!
         direction = Vector2.Dot(Vector2.left, enemyPosition - (Vector2)player.transform.position);
+    
+        if (isAlive)
+        {
+            if (Vector2.Distance(player.transform.position, enemyPosition) < activeDistance)
+            {
+                isActive = true;
+            }
+
+            if (hasAttacked)
+            {
+                attackTimeCounter = attackTimeBuffer;
+                hasAttacked = false;
+            }
+            else
+            {
+                attackTimeCounter -= Time.deltaTime;
+            }
+        }
 
         MoveToPlayer();
         FlipSprite();
@@ -44,20 +66,23 @@ public class EnemyChaserController : MonoBehaviour
 
     private void MoveToPlayer()
     { 
-        if (Vector2.Distance(player.transform.position, enemyPosition) > minDistance)
+        if (isActive && isAlive)
         {
-            rb.MovePosition(enemyPosition + playerPosition * (moveSpeed * Time.fixedDeltaTime));
+            if (Vector2.Distance(player.transform.position, enemyPosition) < minDistance && attackTimeCounter <= 0f)
+            {
+                rb.MovePosition(enemyPosition + playerPosition * (moveSpeed * Time.fixedDeltaTime));
+            }
+            else if (Vector2.Distance(player.transform.position, enemyPosition) < minDistance && attackTimeCounter >= 0f)
+            {
+                rb.MovePosition(enemyPosition - playerPosition * (moveSpeed * Time.fixedDeltaTime));
+            }
         }
-        else if (Vector2.Distance(player.transform.position, enemyPosition) < minDistance)
-        {
-            rb.MovePosition(enemyPosition - playerPosition * (moveSpeed * Time.fixedDeltaTime));
-        }
-
     }
 
     public void KnockbackProcess()
-    {
+    {     
         StartFlashDamage();
+        isAlive = false;
         animator.SetBool("takingDamage", true);
         rb.linearVelocity = Vector2.zero;
         Vector2 knockbackDirection = (transform.position - player.transform.position).normalized;
@@ -95,9 +120,10 @@ public class EnemyChaserController : MonoBehaviour
     // Causa dano pro jogador
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && isAlive)
         {
             other.gameObject.GetComponent<PlayerController>().TakeDamage(attackDamage);
+            hasAttacked = true;
             Debug.Log("Enemy hit!!");
         }
     }
