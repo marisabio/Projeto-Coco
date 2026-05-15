@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6124e6bdada79df4f99166c0aed39c2d
+guid: d296a0521668cd109b8da13efa34cced
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3122554069134578626
-    second: background-1_0
+      213: 3961505230469364723
+    second: ovo png_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: background-1_0
+      name: ovo png_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 640
-        height: 320
+        x: 9
+        y: 9
+        width: 13
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2c397b2c16a855b20800000000000000
-      internalID: 3122554069134578626
+      spriteID: 3fb7af5a4081af630800000000000000
+      internalID: 3961505230469364723
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      background-1_0: 3122554069134578626
+      ovo png_0: 3961505230469364723
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -113,9 +113,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 7
-        width: 32
-        height: 25
+        y: 9
+        width: 31
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,10 +134,10 @@ TextureImporter:
       name: bat vinho_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 8
-        width: 33
-        height: 15
+        x: 40
+        y: 1
+        width: 23
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,9 +157,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 0
-        width: 25
-        height: 24
+        y: 9
+        width: 31
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,10 +178,10 @@ TextureImporter:
       name: bat vinho_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 97
         y: 8
-        width: 32
-        height: 15
+        width: 30
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 667f36b4c5f2de8abafb8ae60b6c1b38
     internalID: 0
     vertices: []
     indices: 
