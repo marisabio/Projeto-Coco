@@ -37,12 +37,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform attackPosition;
     [SerializeField] private LayerMask enemyLayer;
 
+    [Header ("Egg Settings")]
+    [SerializeField] private GameObject eggProjectile;
+    [SerializeField] private Transform eggPosition;
+    [SerializeField] private float shootRate;
+    
+
     // Variáveis de input usando o novo sistema de inputs da Unity. Qualquer coisa, elas também podem ser mudadas no inspector.
     [Header ("Input Settings")] 
     [SerializeField] private InputAction jumpAction;
     [SerializeField] private InputAction movementAction;
     [SerializeField] private InputAction attackAction;
     [SerializeField] private InputAction interactAction;
+    [SerializeField] private InputAction shootingAction;
 
     [Header ("Unlock Settings")] 
     [SerializeField] private bool unlockDoubleJump;
@@ -68,6 +75,7 @@ public class PlayerController : MonoBehaviour
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
     private float attackTimeCounter;
+    private float shootTimeCounter;
 
     // O novo sistema de input da Unity exige que os inputs sejam ativados no código antes de serem usados. 
     // Isso é útil pq permite que a gente desative eles facilmente durante diálogos e custscenes, se necessário.
@@ -107,10 +115,14 @@ public class PlayerController : MonoBehaviour
 
         PlayerPrefs.SetFloat("health", currentHealth);
 
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        PlayerPrefs.SetFloat("savedScene", currentScene);
+
         MovementProcess();
         JumpingProcess();
         AttackProcess();
         InteractProcess();
+        ShootingProcess();
     }
 
     // Esse trecho de código cuida do processo de movimento da Dorotéia. No caso, o movimento de direita pra esquerda!
@@ -322,6 +334,17 @@ public class PlayerController : MonoBehaviour
        
     }
 
+    private void ShootingProcess()
+    {
+        shootTimeCounter -= Time.deltaTime;
+        
+        if (shootTimeCounter <= 0 && shootingAction.WasPressedThisFrame())
+        {
+            shootTimeCounter = shootRate;
+            Instantiate(eggProjectile, eggPosition.position, Quaternion.identity);
+        }
+    }
+
     // Método que diminui o HP da Dorotéia ao levar dano. Precisa ser evocado pelo script dos inimigos e obstáculos!
     public void TakeDamage(float damage)
     {
@@ -373,6 +396,7 @@ public class PlayerController : MonoBehaviour
         jumpAction.Disable();
         movementAction.Disable();
         interactAction.Disable();
+        shootingAction.Disable();
         enableHorizontalControl = false;
         enableVerticalControl = false;
     }
@@ -383,6 +407,7 @@ public class PlayerController : MonoBehaviour
         jumpAction.Enable();
         movementAction.Enable();
         interactAction.Enable();
+        shootingAction.Enable();
         enableHorizontalControl = true;
         enableVerticalControl = true;
 
