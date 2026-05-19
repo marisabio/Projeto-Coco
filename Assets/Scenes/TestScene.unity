@@ -1156,7 +1156,7 @@ GameObject:
   - component: {fileID: 1177203594}
   - component: {fileID: 1177203593}
   m_Layer: 0
-  m_Name: ovo png_0
+  m_Name: Egg Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1708,11 +1708,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8151426523880624, guid: 344c78b130e927ed3afdce34624e3594, type: 3}
   m_PrefabInstance: {fileID: 1853058349}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1882162377 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1820545492744377518, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
-  m_PrefabInstance: {fileID: 6720060807538996529}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2046718772
 GameObject:
   m_ObjectHideFlags: 0
@@ -2126,10 +2121,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
-      propertyPath: eggPosition
-      value: 
-      objectReference: {fileID: 1882162377}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
