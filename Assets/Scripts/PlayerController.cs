@@ -40,9 +40,8 @@ public class PlayerController : MonoBehaviour
     [Header ("Egg Settings")]
     [SerializeField] private GameObject eggProjectile;
     [SerializeField] private Transform eggPosition;
-    [SerializeField] private float shootRate;
+    [SerializeField] private float shootDuration;
     
-
     // Variáveis de input usando o novo sistema de inputs da Unity. Qualquer coisa, elas também podem ser mudadas no inspector.
     [Header ("Input Settings")] 
     [SerializeField] private InputAction jumpAction;
@@ -287,7 +286,7 @@ public class PlayerController : MonoBehaviour
         {
             if (attackAction.WasPressedThisFrame())
             {
-                StartCoroutine(StartAttack());
+                StartCoroutine("StartAttack");
             }
             else
             {
@@ -336,13 +335,42 @@ public class PlayerController : MonoBehaviour
 
     private void ShootingProcess()
     {
-        shootTimeCounter -= Time.deltaTime;
         
-        if (shootTimeCounter <= 0 && shootingAction.WasPressedThisFrame())
+        if (shootingAction.WasPressedThisFrame())
         {
-            shootTimeCounter = shootRate;
-            Instantiate(eggProjectile, eggPosition.position, Quaternion.identity);
+            StartCoroutine("StartShooting");
         }
+        else
+        {
+            EndShooting();
+        }
+    }
+
+    private IEnumerator StartShooting()
+    {
+        animator.SetBool("isShooting", true);
+        isAttacking =  true;
+        Instantiate(eggProjectile, eggPosition.position, Quaternion.identity);
+
+        while (shootTimeCounter <= shootDuration)
+        {
+            DisableCharacterControl();
+            shootTimeCounter += Time.deltaTime;
+
+            yield return null;
+        }
+
+        isAttacking = false;
+        EnableCharacterControl();
+    }
+
+    private void EndShooting()
+    {
+        if (animator.GetBool("isShooting"))
+        {
+            animator.SetBool("isShooting", false);
+        }
+       
     }
 
     // Método que diminui o HP da Dorotéia ao levar dano. Precisa ser evocado pelo script dos inimigos e obstáculos!

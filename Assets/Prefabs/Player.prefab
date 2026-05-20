@@ -290,9 +290,10 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  eggProjectile: {fileID: 7431323172693290463}
+  eggProjectile: {fileID: 2845305603310572950, guid: 9349c50ce4edd7b279e5c83b22352d64, type: 3}
   eggPosition: {fileID: 1820545492744377518}
   shootRate: 1
+  shootDuration: 0
   jumpAction:
     m_Name: Jump
     m_Type: 0
