@@ -37,7 +37,10 @@ public class PlayerController : MonoBehaviour
     [Header ("Egg Settings")]
     [SerializeField] private GameObject eggProjectile;
     [SerializeField] private Transform eggPosition;
+    [SerializeField] private Transform eggTarget;
+    [SerializeField] private float eggForce;
     [SerializeField] private float shootDuration;
+    [SerializeField] private float shootRate;
     
     [Header ("Input Settings")] 
     [SerializeField] private InputAction jumpAction;
@@ -48,6 +51,7 @@ public class PlayerController : MonoBehaviour
 
     [Header ("Unlock Settings")] 
     [SerializeField] private bool unlockDoubleJump;
+    [SerializeField] private bool unlockEggAttack;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -68,6 +72,7 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
+    private float shootRateCounter;
     private float attackTimeCounter;
     private float shootTimeCounter;
     private Vector3 shootDirection;
@@ -306,14 +311,19 @@ public class PlayerController : MonoBehaviour
 
     private void ShootingProcess()
     {
-        
-        if (shootingAction.WasPressedThisFrame())
+        if (unlockEggAttack)
         {
-            StartCoroutine("StartShooting");
-        }
-        else
-        {
-            EndShooting();
+            shootRateCounter += Time.deltaTime;
+            
+            if (shootingAction.WasPressedThisFrame() && !isJumping && shootRateCounter >= shootRate)
+            {
+                shootRateCounter = 0f;
+                StartCoroutine("StartShooting");
+            }
+            else
+            {
+                EndShooting();
+            }
         }
     }
 
@@ -323,11 +333,12 @@ public class PlayerController : MonoBehaviour
         isAttacking =  true;
         GameObject egg = Instantiate(eggProjectile, eggPosition.position, Quaternion.identity);
 
-        Vector2 eggDirection = eggPosition.position; 
+        Vector2 eggSpawnPosition = eggPosition.position;
+        Vector2 eggTargetPosition = eggTarget.position;
 
-        shootDirection = (rb.position - eggDirection).normalized;
+        shootDirection = (eggTargetPosition - eggSpawnPosition).normalized;
 
-        egg.GetComponent<EggProjectile>().Setup(shootDirection, 10f);        
+        egg.GetComponent<EggProjectile>().EggLaunch(shootDirection, eggForce);        
 
         while (shootTimeCounter <= shootDuration)
         {
