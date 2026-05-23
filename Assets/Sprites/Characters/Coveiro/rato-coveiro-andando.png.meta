@@ -1,19 +1,13 @@
 fileFormatVersion: 2
-guid: d6d3c7e43ea7a565dbf2aad3808b0eea
+guid: ee22ee23e99bc1a8995d92c8ae0df35f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 36636389727813380
-    second: bat vinho_0
+      213: -2531338024315991095
+    second: rato-coveiro-andando_0
   - first:
-      213: 8722633682668214554
-    second: bat vinho_1
-  - first:
-      213: -7968598322794644310
-    second: bat vinho_2
-  - first:
-      213: 1732335903098098669
-    second: bat vinho_3
+      213: -1890387675541923905
+    second: rato-coveiro-andando_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -60,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -84,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -109,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bat vinho_0
+      name: rato-coveiro-andando_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 9
-        width: 31
-        height: 13
+        x: 249
+        y: 124
+        width: 1302
+        height: 1327
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 40f34933a98228000800000000000000
-      internalID: 36636389727813380
+      spriteID: 9cbc43e7a71eedcd0800000000000000
+      internalID: -2531338024315991095
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat vinho_1
+      name: rato-coveiro-andando_1
       rect:
         serializedVersion: 2
-        x: 40
-        y: 1
-        width: 23
-        height: 22
+        x: 1824
+        y: 149
+        width: 1376
+        height: 1277
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,52 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a19db41be150d0970800000000000000
-      internalID: 8722633682668214554
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bat vinho_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 9
-        width: 31
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aac3d0c7b0ad96190800000000000000
-      internalID: -7968598322794644310
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bat vinho_3
-      rect:
-        serializedVersion: 2
-        x: 97
-        y: 8
-        width: 30
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: de351d7535e7a0810800000000000000
-      internalID: 1732335903098098669
+      spriteID: fb71c8fbc6ef3c5e0800000000000000
+      internalID: -1890387675541923905
       vertices: []
       indices: 
       edges: []
@@ -200,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 667f36b4c5f2de8abafb8ae60b6c1b38
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -210,10 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bat vinho_0: 36636389727813380
-      bat vinho_1: 8722633682668214554
-      bat vinho_2: -7968598322794644310
-      bat vinho_3: 1732335903098098669
+      rato-coveiro-andando_0: -2531338024315991095
+      rato-coveiro-andando_1: -1890387675541923905
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    // Essas são todas as variáveis que cuidam do movimento da Dorotéia. O pulo dela tem muita variáveis! É para parecer um pouco mais natural e responsivo
-    // Tudo pode ser mudado no inspector dentro da Unity em si
     [Header ("Movement Settings")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
@@ -23,7 +21,6 @@ public class PlayerController : MonoBehaviour
     public float groundCheckRadius;
     public LayerMask groundLayer;
 
-    // Variáveis de combate, ainda em desenvolvimento
     [Header ("Combat Settings")]
     [SerializeField] private float maxHealth;
     [SerializeField] private float currentHealth;
@@ -37,17 +34,25 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform attackPosition;
     [SerializeField] private LayerMask enemyLayer;
 
-    // Variáveis de input usando o novo sistema de inputs da Unity. Qualquer coisa, elas também podem ser mudadas no inspector.
+    [Header ("Egg Settings")]
+    [SerializeField] private GameObject eggProjectile;
+    [SerializeField] private Transform eggPosition;
+    [SerializeField] private Transform eggTarget;
+    [SerializeField] private float eggForce;
+    [SerializeField] private float shootDuration;
+    [SerializeField] private float shootRate;
+    
     [Header ("Input Settings")] 
     [SerializeField] private InputAction jumpAction;
     [SerializeField] private InputAction movementAction;
     [SerializeField] private InputAction attackAction;
     [SerializeField] private InputAction interactAction;
+    [SerializeField] private InputAction shootingAction;
 
     [Header ("Unlock Settings")] 
     [SerializeField] private bool unlockDoubleJump;
+    [SerializeField] private bool unlockEggAttack;
 
-    // Variáveis aleatórias 
     private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -67,16 +72,16 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
+    private float shootRateCounter;
     private float attackTimeCounter;
+    private float shootTimeCounter;
+    private Vector3 shootDirection;
 
-    // O novo sistema de input da Unity exige que os inputs sejam ativados no código antes de serem usados. 
-    // Isso é útil pq permite que a gente desative eles facilmente durante diálogos e custscenes, se necessário.
     void OnEnable()
     {
         EnableCharacterControl();
     }
 
-    // No start a gente instanceia os componentes do Player para serem usados no código.
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -95,11 +100,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // No update vamos deixar os "processos" relacionados a diferentes elementos de gameplay da Dorotéia,
-    // assim como outros elementos de física que precisam ser checados pro frame
     void Update()
     {
-        // Isso aqui checa se tem um chão embaixo da Dorotéia se ela estiver viva. Bem importante!
         if (isActive)
         {
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
@@ -107,25 +109,25 @@ public class PlayerController : MonoBehaviour
 
         PlayerPrefs.SetFloat("health", currentHealth);
 
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        PlayerPrefs.SetFloat("savedScene", currentScene);
+
         MovementProcess();
         JumpingProcess();
         AttackProcess();
         InteractProcess();
+        ShootingProcess();
     }
 
-    // Esse trecho de código cuida do processo de movimento da Dorotéia. No caso, o movimento de direita pra esquerda!
     private void MovementProcess()
     {
         if (enableHorizontalControl)
         {
-            // O input da direção será lido aqui e colocado numa variável.
             horizontalInput = movementAction.ReadValue<float>();
 
-            // A velocidade da Dorotéia vai aumentar dependendo da direção do input.
             rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocityY);
         }
         
-        // Código pra flipar o sprite.
         if (isFacingRight && horizontalInput > 0)
         {
             isFacingRight = false;
@@ -137,7 +139,6 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
 
-        // Aqui controla a animação de andar da Dorotéia. O input tem que ser maior que zero e ela precisar estar no chão.
         if (horizontalInput != 0 && isGrounded)
         {
             animator.SetBool("isWalking", true);
@@ -148,13 +149,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Esse trecho aqui cuida do processo de pulo. É meio complexo e tomou um tico mais do meu tempo do que eu gostaria,
-    // mas acho que o resultado final ficou um pouco melhor do que só seguir o tutorial mais básico na web de pulo de platformer.
     private void JumpingProcess()
     {
         if (enableVerticalControl)
         {
-            //Esse trechinho aqui cuida do "coyote jump" da Dorotéia.
             if (isGrounded)
             {
                 coyoteTimeCounter = coyoteTime;
@@ -164,8 +162,6 @@ public class PlayerController : MonoBehaviour
                 coyoteTimeCounter -= Time.deltaTime;
             }
 
-            // Esse trecho cuida do processo do pulo no momento em que o jogador aperta o botão de pulo.
-            // Também cuida do buffer do pulo, um tempinho a mais de reação pro pulo pro jogo ficar um pouco mais responsivo.
             if (jumpAction.WasPressedThisFrame())
             {
                 animator.SetBool("isLanding", false);
@@ -178,7 +174,6 @@ public class PlayerController : MonoBehaviour
                     coyoteTimeCounter = 0f;
                     jumpBufferCounter = 0f;
 
-                    // Isso cuida da física do pulo em si. A aceleração do pulo da Dorotéia e tudo mais.
                     if (isJumping)
                     {
                         rb.linearVelocity = new Vector2(rb.linearVelocityX, jumpForce);
@@ -206,8 +201,7 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
-            // Esse trechinho faz com que ela entre no ciclo de animação e física do pulo mesmo caso ela não pule,
-            // mas esteja caindo de uma plataforma ou coisa assim. 
+
             else if (!isGrounded)
             {
                 animator.SetBool("isLanding", false);
@@ -224,15 +218,12 @@ public class PlayerController : MonoBehaviour
                 jumpBufferCounter -= Time.deltaTime;
             }
             
-            // A aceleração do pulo é interrompida caso o jogador solte o botão antes do ápice do pulo.
             if (jumpAction.WasReleasedThisFrame())
             {
                 isJumping = false;
                 animator.SetBool("isFalling", true);
             }
 
-            // Esses dois trechinhos do código aceleram a queda do jogador dependendo do ápice do pulo.
-            // Pode parecer meio esquisito mas muito platformer usa isso pra deixar a queda um pouco mas responsiva.
             if (rb.linearVelocityY < 0)
             {
                 rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
@@ -244,7 +235,6 @@ public class PlayerController : MonoBehaviour
                 isJumping = false;
             }
 
-            // Esse restinho do código determina o resto da animação de pulo, constando a queda e a aterrissagem.
             if (!isJumping && !isAttacking)
             {
                 animator.SetBool("isFalling", true);
@@ -269,13 +259,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // Esse método cuida de evocar a rotina de ataque quando o botão for apertado. 
-    // Por ser um IEnumerator, ele vai precisar ser chamado no update por outro método. 
     private void AttackProcess()
         {
             if (attackAction.WasPressedThisFrame())
             {
-                StartCoroutine(StartAttack());
+                StartCoroutine("StartAttack");
             }
             else
             {
@@ -283,7 +271,6 @@ public class PlayerController : MonoBehaviour
             }
         }
         
-    // Isso aqui cuida do começo do ataque em si. 
     private IEnumerator StartAttack()
     {
         List<GameObject> enemies = new List<GameObject>();
@@ -322,7 +309,58 @@ public class PlayerController : MonoBehaviour
        
     }
 
-    // Método que diminui o HP da Dorotéia ao levar dano. Precisa ser evocado pelo script dos inimigos e obstáculos!
+    private void ShootingProcess()
+    {
+        if (unlockEggAttack)
+        {
+            shootRateCounter += Time.deltaTime;
+            
+            if (shootingAction.WasPressedThisFrame() && !isJumping && shootRateCounter >= shootRate)
+            {
+                shootRateCounter = 0f;
+                StartCoroutine("StartShooting");
+            }
+            else
+            {
+                EndShooting();
+            }
+        }
+    }
+
+    private IEnumerator StartShooting()
+    {
+        animator.SetBool("isShooting", true);
+        isAttacking =  true;
+        GameObject egg = Instantiate(eggProjectile, eggPosition.position, Quaternion.identity);
+
+        Vector2 eggSpawnPosition = eggPosition.position;
+        Vector2 eggTargetPosition = eggTarget.position;
+
+        shootDirection = (eggTargetPosition - eggSpawnPosition).normalized;
+
+        egg.GetComponent<EggProjectile>().EggLaunch(shootDirection, eggForce);        
+
+        while (shootTimeCounter <= shootDuration)
+        {
+            DisableCharacterControl();
+            shootTimeCounter += Time.deltaTime;
+
+            yield return null;
+        }
+
+        isAttacking = false;
+        EnableCharacterControl();
+    }
+
+    private void EndShooting()
+    {
+        if (animator.GetBool("isShooting"))
+        {
+            animator.SetBool("isShooting", false);
+        }
+       
+    }
+
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
@@ -334,8 +372,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Esses dois métodos cuidam da animação de flash da Dorotéia mudando o seu shader.
-    // Queria que fosse mais elegante mas foi como eu consegui fazer pra evocar os métodos com o CollisionEnter
     private void StartFlashDamage()
     {
         spriteRenderer.material = knockbackMaterial;
@@ -347,7 +383,6 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.material = mainMaterial;
     }
     
-    // Esse método cuida da animação e processo de derrota da Dorotéia e faz um reload na cena. 
     private IEnumerator Die()
     {
         isActive = false;
@@ -361,18 +396,17 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(dyingDuration);     
         gameObject.SetActive(false);
 
-        // Temporário. O jogo final deve precisar de algo mais elegante que isso.
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentScene);
     }
 
-    // Esses dois métodos cuidam da ativação e desativação dos controles da Dorotéia.
     private void DisableCharacterControl()
     {
         attackAction.Disable();
         jumpAction.Disable();
         movementAction.Disable();
         interactAction.Disable();
+        shootingAction.Disable();
         enableHorizontalControl = false;
         enableVerticalControl = false;
     }
@@ -383,17 +417,16 @@ public class PlayerController : MonoBehaviour
         jumpAction.Enable();
         movementAction.Enable();
         interactAction.Enable();
+        shootingAction.Enable();
         enableHorizontalControl = true;
         enableVerticalControl = true;
 
     }
 
-    // Tudo relacionado a colliders!
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.collider.CompareTag("Enemy"))
         {
-            // Tudo isso aqui podia ser evocado num método a parte, agora que notei. Se blotar demais, depois faço isso.
             DisableCharacterControl();
             StartFlashDamage();
             Debug.Log("Damage!");
@@ -406,7 +439,6 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    // Um OnTriggerStay para objetos interativos
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Interactable"))
@@ -429,7 +461,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Isso aqui é só pra ser possível ver o raio do detector de ataque e chão no editor da Unity.
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
