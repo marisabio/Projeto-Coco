@@ -233,5 +233,5 @@ MonoBehaviour:
   knockbackForce: 15
   knockbackDuration: 0.2
   flashDuration: 0.2
-  knockbackMaterial: {fileID: 2100000, guid: d99cf48638d3f7ea0bfff820e7166f83, type: 2}
+  knockbackMaterial: {fileID: 2100000, guid: 4f4dda7499758798cbbb866633bdec66, type: 2}
   player: {fileID: 0}
