@@ -167277,6 +167277,134 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: jumpAction.m_SingletonActionBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: attackAction.m_SingletonActionBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: interactAction.m_SingletonActionBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: movementAction.m_SingletonActionBindings.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: shootingAction.m_SingletonActionBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: jumpAction.m_SingletonActionBindings.Array.data[1].m_Id
+      value: fccf7253-c01c-4a7c-b829-f8fd8f7e3c97
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: attackAction.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 763a86b6-cecb-474c-bee9-33183ad9926c
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: jumpAction.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Gamepad>/buttonSouth
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: attackAction.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Gamepad>/buttonEast
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: interactAction.m_SingletonActionBindings.Array.data[1].m_Id
+      value: d4a1c873-d3a1-4d32-a050-c0b477726218
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: jumpAction.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Jump
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: movementAction.m_SingletonActionBindings.Array.data[6].m_Id
+      value: aae0d573-de8e-4789-902e-b6cd0ac0feef
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: movementAction.m_SingletonActionBindings.Array.data[7].m_Id
+      value: 27e14007-63ed-4b14-961d-99f745cf803a
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: movementAction.m_SingletonActionBindings.Array.data[8].m_Id
+      value: b920531e-a634-42aa-afc3-df0c7189487d
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: shootingAction.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 006833c6-2f1a-44d3-bf91-b399d66a31a8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: attackAction.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: interactAction.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Gamepad>/buttonWest
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: movementAction.m_SingletonActionBindings.Array.data[6].m_Name
+      value: 1D Axis
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: movementAction.m_SingletonActionBindings.Array.data[6].m_Path
+      value: 1DAxis
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: movementAction.m_SingletonActionBindings.Array.data[7].m_Name
+      value: negative
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: movementAction.m_SingletonActionBindings.Array.data[7].m_Path
+      value: <Gamepad>/leftStick/left
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: movementAction.m_SingletonActionBindings.Array.data[8].m_Name
+      value: positive
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: movementAction.m_SingletonActionBindings.Array.data[8].m_Path
+      value: <Gamepad>/leftStick/right
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: shootingAction.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Gamepad>/rightTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: movementAction.m_SingletonActionBindings.Array.data[6].m_Flags
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: movementAction.m_SingletonActionBindings.Array.data[7].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: movementAction.m_SingletonActionBindings.Array.data[8].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: interactAction.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: movementAction.m_SingletonActionBindings.Array.data[6].m_Action
+      value: Movement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: movementAction.m_SingletonActionBindings.Array.data[7].m_Action
+      value: Movement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: movementAction.m_SingletonActionBindings.Array.data[8].m_Action
+      value: Movement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: shootingAction.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Shooting
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
