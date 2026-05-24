@@ -102,6 +102,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60415931853fef6a5996b52677149612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eggDamage: 1
+  eggDuration: 1
+  flashDuration: 0.2
+  knockbackMaterial: {fileID: 2100000, guid: beb7779209d2deed982ace7cfd844767, type: 2}
+  knockbackForce: 5
 --- !u!50 &1868531871737584263
 Rigidbody2D:
   serializedVersion: 5
@@ -163,7 +168,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0059805512, y: 0.0059803724}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -173,5 +178,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.43333334, y: 0.53333336}
+  m_Size: {x: 0.5601193, y: 0.645766}
   m_EdgeRadius: 0

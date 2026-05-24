@@ -1,12 +1,16 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyChaserController : MonoBehaviour
+public class GrimRatController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float attackDamage;
     [SerializeField] private float minDistance;
     [SerializeField] private float activeDistance;
     [SerializeField] private float attackTimeBuffer;
+    [SerializeField] private float attackDuration;
     [SerializeField] private float knockbackForce;
     [SerializeField] private float knockbackDuration;
     [SerializeField] private float flashDuration;
@@ -15,6 +19,7 @@ public class EnemyChaserController : MonoBehaviour
 
     private Vector2 playerPosition;
     private Vector2 enemyPosition;
+    private float attackBufferTimeCounter;
     private float attackTimeCounter;
     private bool hasAttacked = false;
     private bool isActive = false;
@@ -49,12 +54,12 @@ public class EnemyChaserController : MonoBehaviour
 
             if (hasAttacked)
             {
-                attackTimeCounter = attackTimeBuffer;
+                attackBufferTimeCounter = attackTimeBuffer;
                 hasAttacked = false;
             }
             else
             {
-                attackTimeCounter -= Time.deltaTime;
+                attackBufferTimeCounter -= Time.deltaTime;
             }
         }
 
@@ -66,13 +71,14 @@ public class EnemyChaserController : MonoBehaviour
     { 
         if (isActive && isAlive)
         {
-            if (Vector2.Distance(player.transform.position, enemyPosition) < minDistance && attackTimeCounter <= 0f)
+            if (Vector2.Distance(player.transform.position, enemyPosition) < minDistance && attackBufferTimeCounter <= 0f)
             {
                 rb.MovePosition(enemyPosition + playerPosition * (moveSpeed * Time.fixedDeltaTime));
+                animator.SetBool("isWalking", true);
             }
-            else if (Vector2.Distance(player.transform.position, enemyPosition) < minDistance && attackTimeCounter >= 0f)
+            else if (Vector2.Distance(player.transform.position, enemyPosition) < minDistance && attackBufferTimeCounter >= 0f)
             {
-                rb.MovePosition(enemyPosition - playerPosition * (moveSpeed * Time.fixedDeltaTime));
+                animator.SetBool("isWalking", false);
             }
         }
     }
@@ -100,15 +106,25 @@ public class EnemyChaserController : MonoBehaviour
 
     private void FlipSprite()
     {
-        if (direction < 0f)
+        if (direction > 0f)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
-        else if (direction > 0f)
+        else if (direction < 0f)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
+
+    // private IEnumerator StartAttack()
+    //{
+    //    while (attackTimeCounter <= attackDuration)
+    //    {
+            
+    //    }
+    //    yield return null;
+
+    // }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
