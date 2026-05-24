@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject painelMenuInicial;
     [SerializeField] private GameObject painelCreditos;
