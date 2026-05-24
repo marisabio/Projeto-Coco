@@ -176,7 +176,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: -1898610364692766652, guid: e1923572177d4344d87e41ae89ee7e89, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -344,6 +344,14 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Jump
       m_Flags: 0
+    - m_Name: 
+      m_Id: fccf7253-c01c-4a7c-b829-f8fd8f7e3c97
+      m_Path: <Gamepad>/buttonSouth
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Jump
+      m_Flags: 0
     m_Flags: 0
   movementAction:
     m_Name: Movement
@@ -401,6 +409,30 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Movement
       m_Flags: 8
+    - m_Name: 1D Axis
+      m_Id: aae0d573-de8e-4789-902e-b6cd0ac0feef
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 27e14007-63ed-4b14-961d-99f745cf803a
+      m_Path: <Gamepad>/leftStick/left
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: b920531e-a634-42aa-afc3-df0c7189487d
+      m_Path: <Gamepad>/leftStick/right
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
     m_Flags: 0
   attackAction:
     m_Name: Attack
@@ -413,6 +445,14 @@ MonoBehaviour:
     - m_Name: 
       m_Id: e788d1d4-9b73-42a9-bcfa-338c41700cf0
       m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Attack
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 763a86b6-cecb-474c-bee9-33183ad9926c
+      m_Path: <Gamepad>/buttonEast
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -435,6 +475,14 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Interact
       m_Flags: 0
+    - m_Name: 
+      m_Id: d4a1c873-d3a1-4d32-a050-c0b477726218
+      m_Path: <Gamepad>/buttonWest
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Interact
+      m_Flags: 0
     m_Flags: 0
   shootingAction:
     m_Name: Shooting
@@ -447,6 +495,14 @@ MonoBehaviour:
     - m_Name: 
       m_Id: d0c85c2c-de60-4926-996c-0226e8d2e7e6
       m_Path: <Keyboard>/c
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Shooting
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 006833c6-2f1a-44d3-bf91-b399d66a31a8
+      m_Path: <Gamepad>/rightTrigger
       m_Interactions: 
       m_Processors: 
       m_Groups: 

@@ -306,7 +306,6 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isAttacking", false);
         }
-       
     }
 
     private void ShootingProcess()
@@ -396,8 +395,8 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(dyingDuration);     
         gameObject.SetActive(false);
 
-        int currentScene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentScene);
+        // int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(0);
     }
 
     private void DisableCharacterControl()

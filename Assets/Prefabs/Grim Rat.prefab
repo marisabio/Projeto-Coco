@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 376674806013184541}
   - component: {fileID: 5428513626194158224}
   - component: {fileID: 9185354805234320343}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Grim Rat
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -154,16 +154,16 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d45559bf67e8db3758c6861f1d805aec, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 6
 --- !u!95 &376674806013184541
 Animator:
@@ -228,14 +228,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d13c59e2c543ed23fb2e2a138f10d535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 10
   attackDamage: 1
   minDistance: 8
   activeDistance: 5
-  attackTimeBuffer: 0.5
-  attackDuration: 0
+  attackTimeBuffer: 2
+  attackDuration: 1
   knockbackForce: 15
   knockbackDuration: 0.2
   flashDuration: 0.2
   knockbackMaterial: {fileID: 2100000, guid: 4f4dda7499758798cbbb866633bdec66, type: 2}
+  attackRadius: 1.2
   player: {fileID: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
