@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GrimRatController : MonoBehaviour
 {
@@ -19,6 +19,7 @@ public class GrimRatController : MonoBehaviour
     [SerializeField] private float attackRadius;
     [SerializeField] private Transform player;
     [SerializeField] private LayerMask playerLayer;
+    public UnityEvent onGrimRatDeath;
 
     private Vector2 playerPosition;
     private Vector2 ratPosition;
@@ -77,6 +78,11 @@ public class GrimRatController : MonoBehaviour
 
         MoveToPlayer();
         FlipSprite();
+    }
+
+    void OnDestroy()
+    {
+        onGrimRatDeath.Invoke();
     }
 
     private void MoveToPlayer()
