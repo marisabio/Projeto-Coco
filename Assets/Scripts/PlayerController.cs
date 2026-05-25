@@ -322,7 +322,7 @@ public class PlayerController : MonoBehaviour
         {
             shootRateCounter += Time.deltaTime;
             
-            if (shootingAction.WasPressedThisFrame() && !isJumping && shootRateCounter >= shootRate)
+            if (shootingAction.WasPressedThisFrame() && shootRateCounter >= shootRate)
             {
                 shootRateCounter = 0f;
                 StartCoroutine("StartShooting");

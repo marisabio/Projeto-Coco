@@ -35,8 +35,9 @@ public class EggProjectile : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             other.gameObject.GetComponent<EnemyDamageController>().TakeDamage(eggDamage);
-            StartCoroutine(KnockbackProcess(other));
         }
+
+        StartCoroutine(KnockbackProcess(other));
     }
 
     private IEnumerator EggTime()
