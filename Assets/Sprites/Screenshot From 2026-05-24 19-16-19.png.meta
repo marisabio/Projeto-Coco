@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 11f6fed87127a3f49ae10e4268faaee9
+guid: 1c02bec3e507a25cda85cfc6c7fbe2cf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3861971340296877158
-    second: "BOT\xC3O SAIR_0"
+      213: -1531108943365754336
+    second: Screenshot From 2026-05-24 19-16-19_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "BOT\xC3O SAIR_0"
+      name: Screenshot From 2026-05-24 19-16-19_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 54
-        width: 94
-        height: 25
+        x: 0
+        y: 0
+        width: 336
+        height: 303
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a9b8dd01785876ac0800000000000000
-      internalID: -3861971340296877158
+      spriteID: 022b246378860cae0800000000000000
+      internalID: -1531108943365754336
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "BOT\xC3O SAIR_0": -3861971340296877158
+      Screenshot From 2026-05-24 19-16-19_0: -1531108943365754336
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

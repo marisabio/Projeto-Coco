@@ -106,12 +106,12 @@ TextureImporter:
       name: rato-coveiro-andando_0
       rect:
         serializedVersion: 2
-        x: 249
-        y: 124
+        x: 253
+        y: 126
         width: 1302
         height: 1327
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -129,11 +129,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1824
-        y: 149
+        y: 123
         width: 1376
-        height: 1277
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 1333
+      alignment: 9
+      pivot: {x: 0.4931857, y: 0.5140682}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -150,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f3e3a987174963e7cb26d50a1384255d
     internalID: 0
     vertices: []
     indices: 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GrimRatController : MonoBehaviour
 {
@@ -15,14 +16,19 @@ public class GrimRatController : MonoBehaviour
     [SerializeField] private float knockbackDuration;
     [SerializeField] private float flashDuration;
     [SerializeField] private Material knockbackMaterial;
+    [SerializeField] private float attackRadius;
     [SerializeField] private Transform player;
+    [SerializeField] private LayerMask playerLayer;
+    public UnityEvent onGrimRatDeath;
 
     private Vector2 playerPosition;
-    private Vector2 enemyPosition;
+    private Vector2 ratPosition;
     private float attackBufferTimeCounter;
     private float attackTimeCounter;
     private bool hasAttacked = false;
+    private bool isAttacking = false;
     private bool isActive = false;
+    private bool isTakingDamage = false;
     private bool isAlive = true;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
@@ -30,6 +36,7 @@ public class GrimRatController : MonoBehaviour
     private Animator animator;
     private Material mainMaterial;
     
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -41,25 +48,31 @@ public class GrimRatController : MonoBehaviour
     void Update()
     {
         playerPosition = (player.transform.position - rb.transform.position).normalized;
-        enemyPosition = transform.position;
+        ratPosition = transform.position;
 
-        direction = Vector2.Dot(Vector2.left, enemyPosition - (Vector2)player.transform.position);
+        direction = Vector2.Dot(Vector2.left, ratPosition - (Vector2)player.transform.position);
     
         if (isAlive)
         {
-            if (Vector2.Distance(player.transform.position, enemyPosition) < activeDistance)
+            if (Vector2.Distance(player.transform.position, ratPosition) < activeDistance)
             {
                 isActive = true;
             }
-
-            if (hasAttacked)
+            if (isActive)
             {
-                attackBufferTimeCounter = attackTimeBuffer;
-                hasAttacked = false;
-            }
-            else
-            {
-                attackBufferTimeCounter -= Time.deltaTime;
+                if (hasAttacked)
+                {
+                    attackBufferTimeCounter = attackTimeBuffer;
+                    hasAttacked = false;
+                }
+                else if (attackBufferTimeCounter <= 0 && !isTakingDamage)
+                {
+                    StartCoroutine("StartAttack");
+                }
+                else
+                {
+                    attackBufferTimeCounter -= Time.deltaTime;
+                }
             }
         }
 
@@ -67,16 +80,21 @@ public class GrimRatController : MonoBehaviour
         FlipSprite();
     }
 
+    void OnDestroy()
+    {
+        onGrimRatDeath.Invoke();
+    }
+
     private void MoveToPlayer()
     { 
         if (isActive && isAlive)
         {
-            if (Vector2.Distance(player.transform.position, enemyPosition) < minDistance && attackBufferTimeCounter <= 0f)
+            if (Vector2.Distance(player.transform.position, ratPosition) < minDistance && !isAttacking && !isTakingDamage)
             {
-                rb.MovePosition(enemyPosition + playerPosition * (moveSpeed * Time.fixedDeltaTime));
+                rb.MovePosition(ratPosition + playerPosition * (moveSpeed * Time.fixedDeltaTime));
                 animator.SetBool("isWalking", true);
             }
-            else if (Vector2.Distance(player.transform.position, enemyPosition) < minDistance && attackBufferTimeCounter >= 0f)
+            else
             {
                 animator.SetBool("isWalking", false);
             }
@@ -86,9 +104,7 @@ public class GrimRatController : MonoBehaviour
     public void KnockbackProcess()
     {     
         StartFlashDamage();
-        isAlive = false;
         animator.SetBool("takingDamage", true);
-        rb.linearVelocity = Vector2.zero;
         Vector2 knockbackDirection = (transform.position - player.transform.position).normalized;
         rb.AddForce((knockbackDirection * knockbackForce), ForceMode2D.Impulse);
         Invoke(nameof(EndFlashDamage), flashDuration);
@@ -96,11 +112,15 @@ public class GrimRatController : MonoBehaviour
     
     private void StartFlashDamage()
     {
+        isTakingDamage = true;
         spriteRenderer.material = knockbackMaterial;
     }
     
     private void EndFlashDamage()
     {
+        isTakingDamage = false;
+        rb.linearVelocity = Vector2.zero;
+        animator.SetBool("takingDamage", false);
         spriteRenderer.material = mainMaterial;
     }
 
@@ -116,19 +136,28 @@ public class GrimRatController : MonoBehaviour
         }
     }
 
-    // private IEnumerator StartAttack()
-    //{
-    //    while (attackTimeCounter <= attackDuration)
-    //    {
-            
-    //    }
-    //    yield return null;
+    private IEnumerator StartAttack()
+    {
+        List<GameObject> hitList = new List<GameObject>();
+        animator.Play("Grim Rat Attaking");
+        attackTimeCounter = 0f;
+        isAttacking = true;
 
-    // }
+        while (attackTimeCounter <= attackDuration)
+        {
+            attackTimeCounter += Time.deltaTime;
+
+            yield return null;
+        }
+
+        hasAttacked = true;
+        isAttacking = false;
+
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player") && isAlive)
+        if (other.gameObject.CompareTag("Player") && isAlive && !isTakingDamage)
         {
             other.gameObject.GetComponent<PlayerController>().TakeDamage(attackDamage);
             hasAttacked = true;

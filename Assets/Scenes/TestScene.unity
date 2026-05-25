@@ -556,7 +556,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5700002, z: -10}
+  m_LocalPosition: {x: 0.62, y: -1.5700002, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1856,6 +1856,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bf39762d478b7dbcb8a1bc4d7395899, type: 3}
+--- !u!1001 &2121925412385291072
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1193937973527320948, guid: fa8f21885eb05443a93963f7defb948d, type: 3}
+      propertyPath: m_Name
+      value: Heart Drop
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923922559915762259, guid: fa8f21885eb05443a93963f7defb948d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923922559915762259, guid: fa8f21885eb05443a93963f7defb948d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.516
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923922559915762259, guid: fa8f21885eb05443a93963f7defb948d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923922559915762259, guid: fa8f21885eb05443a93963f7defb948d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923922559915762259, guid: fa8f21885eb05443a93963f7defb948d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923922559915762259, guid: fa8f21885eb05443a93963f7defb948d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923922559915762259, guid: fa8f21885eb05443a93963f7defb948d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923922559915762259, guid: fa8f21885eb05443a93963f7defb948d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923922559915762259, guid: fa8f21885eb05443a93963f7defb948d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923922559915762259, guid: fa8f21885eb05443a93963f7defb948d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fa8f21885eb05443a93963f7defb948d, type: 3}
 --- !u!1001 &5670687128974579883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1935,7 +1992,7 @@ PrefabInstance:
       objectReference: {fileID: 1168934871}
     - target: {fileID: 3462610903861129863, guid: f9d86bc6d7f575a469ad764b4095a838, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.62
       objectReference: {fileID: 0}
     - target: {fileID: 3462610903861129863, guid: f9d86bc6d7f575a469ad764b4095a838, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1992,7 +2049,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2191487594762801114, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.62
       objectReference: {fileID: 0}
     - target: {fileID: 2191487594762801114, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2033,10 +2090,6 @@ PrefabInstance:
     - target: {fileID: 7514179161980179468, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8835598390989774542, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.69
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2278,6 +2331,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grim Rat
       objectReference: {fileID: 0}
+    - target: {fileID: 4859933897605788896, guid: b94595d0043406168a4d01c8df7dfdc2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9185354805234320343, guid: b94595d0043406168a4d01c8df7dfdc2, type: 3}
       propertyPath: player
       value: 
@@ -2299,8 +2356,9 @@ SceneRoots:
   - {fileID: 5670687128974579883}
   - {fileID: 8000576874799117273}
   - {fileID: 6857253229511470466}
+  - {fileID: 8859716054542380732}
   - {fileID: 958120277}
   - {fileID: 83473394}
   - {fileID: 1102416895}
   - {fileID: 618823379}
-  - {fileID: 8859716054542380732}
+  - {fileID: 2121925412385291072}

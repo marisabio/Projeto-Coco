@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float knockbackForce;
     [SerializeField] private float knockbackDuration;
     [SerializeField] private Material knockbackMaterial;
+    [SerializeField] private Material restoreMaterial;
     [SerializeField] private float dyingDuration;
     [SerializeField] private float attackRadius;
     [SerializeField] private float attackDamage;
@@ -306,7 +307,6 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isAttacking", false);
         }
-       
     }
 
     private void ShootingProcess()
@@ -372,13 +372,33 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void RestoreDamage(float damage)
+    {
+        if (currentHealth < 3)
+        {
+            StartFlashRestore();
+            currentHealth += damage;
+            Invoke(nameof(EndFlashRestore), knockbackDuration);
+        }
+    }
+
     private void StartFlashDamage()
     {
         spriteRenderer.material = knockbackMaterial;
         animator.Play("Damage");
     }
+
+    private void StartFlashRestore()
+    {
+        spriteRenderer.material = knockbackMaterial;
+    }
     
     private void EndFlashDamage()
+    {
+        spriteRenderer.material = mainMaterial;
+    }
+
+        private void EndFlashRestore()
     {
         spriteRenderer.material = mainMaterial;
     }
@@ -393,11 +413,11 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(knockbackDuration - 0.1f);
         col.isTrigger = true;
         rb.constraints = RigidbodyConstraints2D.FreezePosition;
-        yield return new WaitForSeconds(dyingDuration);     
+        yield return new WaitForSeconds(dyingDuration);
         gameObject.SetActive(false);
 
-        int currentScene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentScene);
+        // int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(0);
     }
 
     private void DisableCharacterControl()
