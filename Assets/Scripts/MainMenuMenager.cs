@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
@@ -7,6 +8,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] private string nomeDoLevelDejogo;
     [SerializeField] private GameObject painelMenuInicial;
     [SerializeField] private GameObject painelCreditos;
+
+    [Header("Configuração do Controle")]
+    [SerializeField] private GameObject botaoVoltarNosCreditos;
+    [SerializeField] private GameObject botaoCreditosNoMenuPrincipal;
     public void Jogar()
     {
        SceneManager.LoadScene(nomeDoLevelDejogo); 
@@ -15,11 +20,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
      painelMenuInicial.SetActive(false);
      painelCreditos.SetActive(true);
+     EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(botaoVoltarNosCreditos);
     }
     public void FecharCreditos()
     {
     painelMenuInicial.SetActive(true);
-     painelCreditos.SetActive(false);     
+     painelCreditos.SetActive(false);    
+     EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(botaoCreditosNoMenuPrincipal); 
     }
 
       public void SairJogo()
