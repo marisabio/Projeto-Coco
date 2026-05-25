@@ -22,8 +22,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
 
     [Header ("Combat Settings")]
+    public float currentHealth;
     [SerializeField] private float maxHealth;
-    [SerializeField] private float currentHealth;
     [SerializeField] private float knockbackForce;
     [SerializeField] private float knockbackDuration;
     [SerializeField] private Material knockbackMaterial;
@@ -42,6 +42,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float eggForce;
     [SerializeField] private float shootDuration;
     [SerializeField] private float shootRate;
+
+    [Header ("Audio Settings")]
+    [SerializeField] AudioClip hurt;
+    [SerializeField] AudioClip jump;
     
     [Header ("Input Settings")] 
     [SerializeField] private InputAction jumpAction;
@@ -59,6 +63,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Material mainMaterial;
     private Collider2D col;
+    private AudioSource audioSource;
     private bool enableHorizontalControl;
     private bool enableVerticalControl;
     private bool isFacingRight = false;
@@ -89,6 +94,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
+        audioSource = GetComponent<AudioSource>();
         mainMaterial = spriteRenderer.material;
 
         if (PlayerPrefs.GetFloat("health") <= 0)
@@ -172,6 +178,7 @@ public class PlayerController : MonoBehaviour
                 {
                     isJumping = true;
                     animator.Play("Jumping");
+                    audioSource.PlayOneShot(jump);
                     coyoteTimeCounter = 0f;
                     jumpBufferCounter = 0f;
 
@@ -449,6 +456,7 @@ public class PlayerController : MonoBehaviour
         {
             DisableCharacterControl();
             StartFlashDamage();
+            audioSource.PlayOneShot(hurt);
             Debug.Log("Damage!");
             rb.linearVelocity = Vector2.zero;
             Vector2 knockbackDirection = (transform.position - other.collider.transform.position).normalized;

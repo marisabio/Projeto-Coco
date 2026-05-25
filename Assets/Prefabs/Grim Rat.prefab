@@ -201,6 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   deathTime: 0.2
+  damageSound: {fileID: 8300000, guid: 80713677dfc56b4edb59b9538400534b, type: 3}
   onTakeDamage:
     m_PersistentCalls:
       m_Calls:
@@ -239,7 +240,7 @@ MonoBehaviour:
   flashDuration: 0.2
   knockbackMaterial: {fileID: 2100000, guid: 4f4dda7499758798cbbb866633bdec66, type: 2}
   attackRadius: 1.2
-  player: {fileID: 0}
+  player: {fileID: 2191487594762801114, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
