@@ -407,8 +407,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  maxHealth: 3
   currentHealth: 0
+  maxHealth: 3
   knockbackForce: 16
   knockbackDuration: 0.2
   knockbackMaterial: {fileID: 2100000, guid: d99cf48638d3f7ea0bfff820e7166f83, type: 2}
@@ -651,7 +651,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   unlockDoubleJump: 0
-  unlockEggAttack: 1
+  unlockEggAttack: 0
 --- !u!1 &9170069101296376927
 GameObject:
   m_ObjectHideFlags: 0

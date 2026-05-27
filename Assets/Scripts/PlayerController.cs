@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour
     private bool isActive = true;
     private bool isInteracting = false;
     private bool canInteract = false;
+    private bool isTakingDamage = false;
     private float horizontalInput;
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
@@ -285,6 +286,8 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isAttacking", true);
         isAttacking =  true;
         attackTimeCounter = 0f;
+        col.isTrigger = true;
+        rb.constraints = RigidbodyConstraints2D.FreezePosition;
 
         while (attackTimeCounter <= attackDuration)
         {
@@ -304,6 +307,9 @@ public class PlayerController : MonoBehaviour
 
             yield return null;
         }
+
+        col.isTrigger = false;
+        rb.constraints = RigidbodyConstraints2D.None;
 
         isAttacking =  false;
     }
@@ -370,7 +376,10 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
+        if (!isTakingDamage)
+        {
+            currentHealth -= damage;
+        }
 
         if (currentHealth <= 0)
         {
@@ -423,8 +432,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(dyingDuration);
         gameObject.SetActive(false);
 
-        // int currentScene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(0);
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
     }
 
     private void DisableCharacterControl()
@@ -454,6 +462,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.collider.CompareTag("Enemy"))
         {
+            isTakingDamage = true;
             DisableCharacterControl();
             StartFlashDamage();
             audioSource.PlayOneShot(hurt);
@@ -463,6 +472,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
             Invoke(nameof(EndFlashDamage), knockbackDuration);
             Invoke(nameof(EnableCharacterControl), knockbackDuration);
+            isTakingDamage = false;
         }
     }
 
