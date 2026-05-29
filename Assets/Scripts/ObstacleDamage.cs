@@ -24,5 +24,10 @@ public class ObstacleDamage : MonoBehaviour
             other.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
             Debug.Log("Enemy hit!!");
         }
+        else if(other.gameObject.CompareTag("Enemy"))
+        {
+            other.gameObject.GetComponent<EnemyDamageController>().TakeDamage(damage);
+            Debug.Log("Enemy in obstacle!!");
+        }
     }
 }

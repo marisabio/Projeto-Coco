@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843235797b64f464496dfc3917f9c500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 5
   deathTime: 0.2
   damageSound: {fileID: 8300000, guid: 80713677dfc56b4edb59b9538400534b, type: 3}
   onTakeDamage:
@@ -330,7 +330,7 @@ MonoBehaviour:
   moveSpeed: 10
   attackDamage: 1
   minDistance: 8
-  activeDistance: 5
+  activeDistance: 8
   attackTimeBuffer: 2
   attackDuration: 1
   knockbackForce: 15
@@ -338,7 +338,7 @@ MonoBehaviour:
   flashDuration: 0.2
   knockbackMaterial: {fileID: 2100000, guid: 4f4dda7499758798cbbb866633bdec66, type: 2}
   attackRadius: 1.2
-  player: {fileID: 2191487594762801114, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+  player: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64

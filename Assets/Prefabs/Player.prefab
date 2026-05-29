@@ -414,7 +414,8 @@ MonoBehaviour:
   knockbackMaterial: {fileID: 2100000, guid: d99cf48638d3f7ea0bfff820e7166f83, type: 2}
   restoreMaterial: {fileID: 2100000, guid: 0da30598cb30006909192eaaaeba4445, type: 2}
   dyingDuration: 1.34
-  attackRadius: 0.58
+  attackImpulse: 1500
+  attackRadius: 0.9
   attackDamage: 1
   attackDuration: 0.15
   attackPosition: {fileID: 683708116504920381}
@@ -677,7 +678,7 @@ Transform:
   m_GameObject: {fileID: 9170069101296376927}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.284, y: 0, z: 0}
+  m_LocalPosition: {x: 0.65, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

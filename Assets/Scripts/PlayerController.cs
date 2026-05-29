@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Material knockbackMaterial;
     [SerializeField] private Material restoreMaterial;
     [SerializeField] private float dyingDuration;
+    [SerializeField] private float attackImpulse;
     [SerializeField] private float attackRadius;
     [SerializeField] private float attackDamage;
     [SerializeField] private float attackDuration;
@@ -83,6 +84,7 @@ public class PlayerController : MonoBehaviour
     private float attackTimeCounter;
     private float shootTimeCounter;
     private Vector3 shootDirection;
+    private Vector2 attackImpulseVector;
 
     void OnEnable()
     {
@@ -287,8 +289,20 @@ public class PlayerController : MonoBehaviour
         isAttacking =  true;
         attackTimeCounter = 0f;
         col.isTrigger = true;
-        rb.constraints = RigidbodyConstraints2D.FreezePosition;
+        attackAction.Disable();
+        
+        if (isFacingRight)
+        {
+            attackImpulseVector = new Vector2(-attackImpulse, rb.linearVelocityY);
+        }
+        else if (!isFacingRight)
+        {
+            attackImpulseVector = new Vector2(attackImpulse, rb.linearVelocityY);
+        }
 
+        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        rb.AddForce(attackImpulseVector, ForceMode2D.Force);
+        
         while (attackTimeCounter <= attackDuration)
         {
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPosition.position, attackRadius, enemyLayer);
@@ -308,8 +322,10 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
+        attackAction.Enable();
         col.isTrigger = false;
         rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         isAttacking =  false;
     }
@@ -433,6 +449,7 @@ public class PlayerController : MonoBehaviour
         gameObject.SetActive(false);
 
         int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
     }
 
     private void DisableCharacterControl()

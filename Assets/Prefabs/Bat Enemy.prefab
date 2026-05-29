@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6109443184075788837}
   - component: {fileID: 157448361762118389}
   - component: {fileID: 3031331913463128926}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bat Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
