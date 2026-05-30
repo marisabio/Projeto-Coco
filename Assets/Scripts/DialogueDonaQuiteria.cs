@@ -21,11 +21,17 @@ private DialogueControl dc;
     }
     public void Interact()
     {
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, radious, playerLayer);
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, radious, playerLayer); // Cria o campo do trigger
 
-        if(hit !=null)
+        if(hit != null)
         {
-         dc.Speech(profile, speechText, actorName);  
+         Debug.Log("Detectou o objeto: " + hit.name); // teste pra saber se chamou aqui
+         dc.Speech(profile, speechText, actorName);  // aqui era para aparecer a caixa de dialogo
         }
     }
+    private void OnDrawGizmosSelected()
+    {
+      Gizmos.DrawWireSphere(transform.position, radious); // mostra o circulo do trigger
+    }
+
 }

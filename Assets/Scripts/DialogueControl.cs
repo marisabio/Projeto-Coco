@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,8 +9,8 @@ public class DialogueControl : MonoBehaviour
    public GameObject dialogueObj;
 
 public Image profile;
-public Text speechText;
-public Text actorNameText;
+public TextMeshProUGUI speechText;
+public TextMeshProUGUI actorNameText;
 
 [Header("Configuracoes")]
 public float typingSpeed;
@@ -21,5 +22,7 @@ public void Speech(Sprite p, string txt, string actorName)
         speechText.text = txt;
         actorNameText.text = actorName;
     }
+
+
 
 }
