@@ -2,36 +2,21 @@ using UnityEngine;
 
 public class DialogueDonaQuiteria : MonoBehaviour
 {
-public Sprite profile;
-public string speechText;
-public string actorName;
+    public Sprite profile;
+    public string speechText;
+    public string actorName;
+    public LayerMask playerLayer;
+    public GameObject dialogueControl;
 
-public LayerMask playerLayer;
-public float radious;
-private DialogueControl dc;
+    // Eu troquei o sisteminha de trigger ser o de interegíveis que tinha feito antes. Agora apertando o botão f (pode ser outro) trigga o dialogo.
+    // Acaba sendo mais simples. Pra situações especiais, dá pra criar outros tipos de trigger.
+    // Se vc tiver dúvida sobre como funciona o sisteminha de interagíveis, só falar comigo. Mas não deixa de dar uma olhadinha em UnityEvents depois!
 
-    private void Start()
-    {
-     dc = FindObjectOfType<DialogueControl>();   
-    }
-
-    private void FixedUpdate()
-    {
-        Interact();
-    }
     public void Interact()
     {
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, radious, playerLayer); // Cria o campo do trigger
+        Debug.Log("Teste");
+        dialogueControl.GetComponent<DialogueControl>().Speech(profile, speechText, actorName);
+    }
 
-        if(hit != null)
-        {
-         Debug.Log("Detectou o objeto: " + hit.name); // teste pra saber se chamou aqui
-         dc.Speech(profile, speechText, actorName);  // aqui era para aparecer a caixa de dialogo
-        }
-    }
-    private void OnDrawGizmosSelected()
-    {
-      Gizmos.DrawWireSphere(transform.position, radious); // mostra o circulo do trigger
-    }
 
 }
