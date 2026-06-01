@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrimRatController : MonoBehaviour
+public class K9Controller : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float attackDamage;
@@ -20,7 +20,7 @@ public class GrimRatController : MonoBehaviour
     [SerializeField] private LayerMask playerLayer;
 
     private Vector2 playerPosition;
-    private Vector2 ratPosition;
+    private Vector2 dogPosition;
     private float attackBufferTimeCounter;
     private float attackTimeCounter;
     private bool hasAttacked = false;
@@ -46,13 +46,13 @@ public class GrimRatController : MonoBehaviour
     void Update()
     {
         playerPosition = (player.transform.position - rb.transform.position).normalized;
-        ratPosition = transform.position;
+        dogPosition = transform.position;
 
-        direction = Vector2.Dot(Vector2.left, ratPosition - (Vector2)player.transform.position);
+        direction = Vector2.Dot(Vector2.left, dogPosition - (Vector2)player.transform.position);
     
         if (isAlive)
         {
-            if (Vector2.Distance(player.transform.position, ratPosition) < activeDistance)
+            if (Vector2.Distance(player.transform.position, dogPosition) < activeDistance)
             {
                 isActive = true;
             }
@@ -82,9 +82,9 @@ public class GrimRatController : MonoBehaviour
     { 
         if (isActive && isAlive)
         {
-            if (Vector2.Distance(player.transform.position, ratPosition) < minDistance && !isAttacking && !isTakingDamage)
+            if (Vector2.Distance(player.transform.position, dogPosition) < minDistance && !isAttacking && !isTakingDamage)
             {
-                rb.MovePosition(ratPosition + playerPosition * (moveSpeed * Time.fixedDeltaTime));
+                rb.MovePosition(dogPosition + playerPosition * (moveSpeed * Time.fixedDeltaTime));
                 animator.SetBool("isWalking", true);
             }
             else
@@ -132,7 +132,7 @@ public class GrimRatController : MonoBehaviour
     private IEnumerator StartAttack()
     {
         List<GameObject> hitList = new List<GameObject>();
-        animator.Play("Grim Rat Attaking");
+        animator.Play("");
         attackTimeCounter = 0f;
         isAttacking = true;
 
