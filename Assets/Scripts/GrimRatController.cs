@@ -74,9 +74,13 @@ public class GrimRatController : MonoBehaviour
             }
         }
 
-        MoveToPlayer();
         FlipSprite();
     }
+
+    void FixedUpdate()
+    {
+        MoveToPlayer();
+    } 
 
     private void MoveToPlayer()
     { 

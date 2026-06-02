@@ -272,7 +272,7 @@ public class PlayerController : MonoBehaviour
 
     private void AttackProcess()
         {
-            if (attackAction.WasPressedThisFrame())
+            if (attackAction.WasReleasedThisFrame())
             {
                 StartCoroutine("StartAttack");
             }

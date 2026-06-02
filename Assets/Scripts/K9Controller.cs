@@ -74,9 +74,14 @@ public class K9Controller : MonoBehaviour
             }
         }
 
-        MoveToPlayer();
+        
         FlipSprite();
     }
+
+    void FixedUpdate()
+    {
+        MoveToPlayer();
+    } 
 
     private void MoveToPlayer()
     { 
@@ -97,7 +102,7 @@ public class K9Controller : MonoBehaviour
     public void KnockbackProcess()
     {     
         StartFlashDamage();
-        animator.SetBool("takingDamage", true);
+        //animator.SetBool("takingDamage", true);
         Vector2 knockbackDirection = (transform.position - player.transform.position).normalized;
         rb.AddForce((knockbackDirection * knockbackForce), ForceMode2D.Impulse);
         Invoke(nameof(EndFlashDamage), flashDuration);
@@ -113,7 +118,7 @@ public class K9Controller : MonoBehaviour
     {
         isTakingDamage = false;
         rb.linearVelocity = Vector2.zero;
-        animator.SetBool("takingDamage", false);
+        //animator.SetBool("takingDamage", false);
         spriteRenderer.material = mainMaterial;
     }
 
@@ -132,7 +137,7 @@ public class K9Controller : MonoBehaviour
     private IEnumerator StartAttack()
     {
         List<GameObject> hitList = new List<GameObject>();
-        animator.Play("");
+        //animator.Play("");
         attackTimeCounter = 0f;
         isAttacking = true;
 
