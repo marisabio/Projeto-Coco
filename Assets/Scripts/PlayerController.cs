@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Material restoreMaterial;
     [SerializeField] private float dyingDuration;
     [SerializeField] private float attackImpulse;
+    [SerializeField] private float attackRate;
     [SerializeField] private float attackRadius;
     [SerializeField] private float attackDamage;
     [SerializeField] private float attackDuration;
@@ -80,6 +81,7 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
+    private float attackRateCounter;
     private float shootRateCounter;
     private float attackTimeCounter;
     private float shootTimeCounter;
@@ -272,22 +274,29 @@ public class PlayerController : MonoBehaviour
 
     private void AttackProcess()
         {
-            if (attackAction.WasReleasedThisFrame())
+            if (!isAttacking)
             {
+                attackRateCounter += Time.deltaTime;
+            }
+            
+            if (attackAction.WasPressedThisFrame() && attackRateCounter >= attackRate)
+            {
+                attackRateCounter = 0f;
                 StartCoroutine("StartAttack");
             }
             else
             {
                 EndAttack();
             }
+
         }
         
     private IEnumerator StartAttack()
     {
         List<GameObject> enemies = new List<GameObject>();
         animator.SetBool("isAttacking", true);
-        isAttacking =  true;
         attackTimeCounter = 0f;
+        isAttacking = true;
         col.isTrigger = true;
         attackAction.Disable();
         
@@ -322,12 +331,12 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
+        isAttacking = false;
         attackAction.Enable();
         col.isTrigger = false;
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-        isAttacking =  false;
     }
 
     private void EndAttack()

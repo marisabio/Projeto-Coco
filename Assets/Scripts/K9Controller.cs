@@ -9,6 +9,7 @@ public class K9Controller : MonoBehaviour
     [SerializeField] private float attackDamage;
     [SerializeField] private float minDistance;
     [SerializeField] private float activeDistance;
+    [SerializeField] private float vulnerableTime;
     [SerializeField] private float attackTimeBuffer;
     [SerializeField] private float attackDuration;
     [SerializeField] private float knockbackForce;
@@ -22,6 +23,7 @@ public class K9Controller : MonoBehaviour
     private Vector2 playerPosition;
     private Vector2 dogPosition;
     private float attackBufferTimeCounter;
+    private float vulnerableTimeCounter;
     private float attackTimeCounter;
     private bool hasAttacked = false;
     private bool isAttacking = false;
@@ -52,7 +54,7 @@ public class K9Controller : MonoBehaviour
     
         if (isAlive)
         {
-            if (Vector2.Distance(player.transform.position, dogPosition) < activeDistance)
+            if (Vector2.Distance(player.transform.position, dogPosition) < activeDistance && vulnerableTimeCounter <= 0)
             {
                 isActive = true;
             }
@@ -61,6 +63,7 @@ public class K9Controller : MonoBehaviour
                 if (hasAttacked)
                 {
                     attackBufferTimeCounter = attackTimeBuffer;
+                    vulnerableTimeCounter = vulnerableTime;
                     hasAttacked = false;
                 }
                 else if (attackBufferTimeCounter <= 0 && !isTakingDamage)
@@ -70,6 +73,7 @@ public class K9Controller : MonoBehaviour
                 else
                 {
                     attackBufferTimeCounter -= Time.deltaTime;
+                    vulnerableTimeCounter -= Time.deltaTime;
                 }
             }
         }
@@ -87,7 +91,7 @@ public class K9Controller : MonoBehaviour
     { 
         if (isActive && isAlive)
         {
-            if (Vector2.Distance(player.transform.position, dogPosition) < minDistance && !isAttacking && !isTakingDamage)
+            if (Vector2.Distance(player.transform.position, dogPosition) < minDistance && !isTakingDamage)
             {
                 rb.MovePosition(dogPosition + playerPosition * (moveSpeed * Time.fixedDeltaTime));
                 animator.SetBool("isWalking", true);
@@ -137,7 +141,7 @@ public class K9Controller : MonoBehaviour
     private IEnumerator StartAttack()
     {
         List<GameObject> hitList = new List<GameObject>();
-        //animator.Play("");
+        animator.Play("K9 Attacking");
         attackTimeCounter = 0f;
         isAttacking = true;
 
