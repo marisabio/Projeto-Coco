@@ -26,7 +26,7 @@ public class K9Controller : MonoBehaviour
     private float vulnerableTimeCounter;
     private float attackTimeCounter;
     private bool hasAttacked = false;
-    private bool isAttacking = false;
+    //private bool isAttacking = false;
     private bool isActive = false;
     private bool isTakingDamage = false;
     private bool isAlive = true;
@@ -54,7 +54,7 @@ public class K9Controller : MonoBehaviour
     
         if (isAlive)
         {
-            if (Vector2.Distance(player.transform.position, dogPosition) < activeDistance && vulnerableTimeCounter <= 0)
+            if (Vector2.Distance(player.transform.position, dogPosition) < activeDistance)
             {
                 isActive = true;
             }
@@ -91,13 +91,15 @@ public class K9Controller : MonoBehaviour
     { 
         if (isActive && isAlive)
         {
-            if (Vector2.Distance(player.transform.position, dogPosition) < minDistance && !isTakingDamage)
+            if (Vector2.Distance(player.transform.position, dogPosition) < minDistance && !isTakingDamage && vulnerableTimeCounter <= 0)
             {
+                rb.constraints = RigidbodyConstraints2D.FreezePositionY;
                 rb.MovePosition(dogPosition + playerPosition * (moveSpeed * Time.fixedDeltaTime));
                 animator.SetBool("isWalking", true);
             }
             else
             {
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 animator.SetBool("isWalking", false);
             }
         }
@@ -143,7 +145,7 @@ public class K9Controller : MonoBehaviour
         List<GameObject> hitList = new List<GameObject>();
         animator.Play("K9 Attacking");
         attackTimeCounter = 0f;
-        isAttacking = true;
+        //isAttacking = true;
 
         while (attackTimeCounter <= attackDuration)
         {
@@ -153,7 +155,7 @@ public class K9Controller : MonoBehaviour
         }
 
         hasAttacked = true;
-        isAttacking = false;
+        //isAttacking = false;
 
     }
 
