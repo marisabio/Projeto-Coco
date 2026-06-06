@@ -16,13 +16,13 @@ GameObject:
   - component: {fileID: 7697611124868697524}
   - component: {fileID: 5444549465896916201}
   - component: {fileID: 9057507218543432124}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: K9
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1461834669513337006
 Transform:
   m_ObjectHideFlags: 0
@@ -127,7 +127,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0025968552, y: 0.003653288}
+  m_Offset: {x: -0.0025968552, y: 0.08334613}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -137,7 +137,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.6888561, y: 2.1926408}
+  m_Size: {x: 1.6888561, y: 2.033255}
   m_EdgeRadius: 0
 --- !u!50 &9189521829660442975
 Rigidbody2D:
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843235797b64f464496dfc3917f9c500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 8
   deathTime: 0.2
   damageSound: {fileID: 8300000, guid: 80713677dfc56b4edb59b9538400534b, type: 3}
   onTakeDamage:
@@ -327,12 +327,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b889a324e5f5534e1b8f7f4c21b6bf78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 13
+  moveSpeed: 14
   attackDamage: 1
-  minDistance: 8
-  activeDistance: 8
-  attackTimeBuffer: 2
-  attackDuration: 1
+  minDistance: 15
+  activeDistance: 15
+  vulnerableTime: 1
+  attackTimeBuffer: 3
+  attackDuration: 0.4
   knockbackForce: 15
   knockbackDuration: 0.2
   flashDuration: 0.2

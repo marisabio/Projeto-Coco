@@ -1,0 +1,689 @@
+fileFormatVersion: 2
+guid: 665ea7de11a377af086129a9caf37a5c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5776981652591704151
+    second: k9-stomping_0
+  - first:
+      213: -3137896719491504885
+    second: k9-stomping_1
+  - first:
+      213: 1957696164745841915
+    second: k9-stomping_2
+  - first:
+      213: 8757124551239569771
+    second: k9-stomping_3
+  - first:
+      213: 6078753123881857479
+    second: k9-stomping_4
+  - first:
+      213: -5072025214796486248
+    second: k9-stomping_5
+  - first:
+      213: -5536371781266403557
+    second: k9-stomping_6
+  - first:
+      213: -2522001722916387627
+    second: k9-stomping_7
+  - first:
+      213: -5367073078489094410
+    second: k9-stomping_8
+  - first:
+      213: 6846825746965875785
+    second: k9-stomping_9
+  - first:
+      213: 5407752440398399582
+    second: k9-stomping_10
+  - first:
+      213: -7156621959242315671
+    second: k9-stomping_11
+  - first:
+      213: 8911926597306920452
+    second: k9-stomping_12
+  - first:
+      213: -2384192100856552553
+    second: k9-stomping_13
+  - first:
+      213: -8655936488613520255
+    second: k9-stomping_14
+  - first:
+      213: -8876209498798274336
+    second: k9-stomping_15
+  - first:
+      213: 4084044125798344566
+    second: k9-stomping_16
+  - first:
+      213: 6579916824400938898
+    second: k9-stomping_17
+  - first:
+      213: 2335950625737989379
+    second: k9-stomping_18
+  - first:
+      213: 3348666284497375871
+    second: k9-stomping_19
+  - first:
+      213: -5913048424596926634
+    second: k9-stomping_20
+  - first:
+      213: 7099147056755492749
+    second: k9-stomping_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 30
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: k9-stomping_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 16
+        width: 62
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a782537bc904dfa0800000000000000
+      internalID: -5776981652591704151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_1
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 17
+        width: 74
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0568d41f83f374d0800000000000000
+      internalID: -3137896719491504885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_2
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 20
+        width: 88
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfc02dd1a422b2b10800000000000000
+      internalID: 1957696164745841915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_3
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 20
+        width: 88
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b619c72d16e878970800000000000000
+      internalID: 8757124551239569771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_4
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 20
+        width: 92
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c1364272c11c5450800000000000000
+      internalID: 6078753123881857479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_5
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 16
+        width: 86
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8992b3c90fb8c99b0800000000000000
+      internalID: -5072025214796486248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_6
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 18
+        width: 76
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1f8e19a23bda23b0800000000000000
+      internalID: -5536371781266403557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_7
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 18
+        width: 65
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d445ae8bcc000dd0800000000000000
+      internalID: -2522001722916387627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_8
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 0
+        width: 62
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f6681998735485b0800000000000000
+      internalID: -5367073078489094410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_9
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 0
+        width: 52
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94c46e6adbfc40f50800000000000000
+      internalID: 6846825746965875785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_10
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 0
+        width: 41
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e58c23b61323c0b40800000000000000
+      internalID: 5407752440398399582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_11
+      rect:
+        serializedVersion: 2
+        x: 1134
+        y: 0
+        width: 48
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9680a97de329eac90800000000000000
+      internalID: -7156621959242315671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_12
+      rect:
+        serializedVersion: 2
+        x: 1199
+        y: 0
+        width: 83
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40ea5d8d5068dab70800000000000000
+      internalID: 8911926597306920452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_13
+      rect:
+        serializedVersion: 2
+        x: 1312
+        y: 0
+        width: 70
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79327209ae5a9eed0800000000000000
+      internalID: -2384192100856552553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_14
+      rect:
+        serializedVersion: 2
+        x: 1421
+        y: 0
+        width: 62
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18c59ddef9fefd780800000000000000
+      internalID: -8655936488613520255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_15
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 0
+        width: 52
+        height: 78
+      alignment: 9
+      pivot: {x: 0.5, y: 0.41488066}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e84e203d7e51d480800000000000000
+      internalID: -8876209498798274336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_16
+      rect:
+        serializedVersion: 2
+        x: 1641
+        y: 0
+        width: 41
+        height: 85
+      alignment: 9
+      pivot: {x: 0.50000596, y: 0.4316542}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6772b358e707da830800000000000000
+      internalID: 4084044125798344566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_17
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 0
+        width: 48
+        height: 87
+      alignment: 9
+      pivot: {x: 0.5, y: 0.43322533}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 297c80a6d7f805b50800000000000000
+      internalID: 6579916824400938898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_18
+      rect:
+        serializedVersion: 2
+        x: 1799
+        y: 0
+        width: 83
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30dd6fbb7b6fa6020800000000000000
+      internalID: 2335950625737989379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_19
+      rect:
+        serializedVersion: 2
+        x: 1912
+        y: 0
+        width: 70
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f721bc66e3ad87e20800000000000000
+      internalID: 3348666284497375871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_20
+      rect:
+        serializedVersion: 2
+        x: 1299
+        y: 0
+        width: 18
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65f873859c1a0fda0800000000000000
+      internalID: -5913048424596926634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: k9-stomping_21
+      rect:
+        serializedVersion: 2
+        x: 1899
+        y: 0
+        width: 18
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d87cb2e92ac358260800000000000000
+      internalID: 7099147056755492749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 32cda6caa9e17eabaa7321b78f35da37
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      k9-stomping_0: -5776981652591704151
+      k9-stomping_1: -3137896719491504885
+      k9-stomping_10: 5407752440398399582
+      k9-stomping_11: -7156621959242315671
+      k9-stomping_12: 8911926597306920452
+      k9-stomping_13: -2384192100856552553
+      k9-stomping_14: -8655936488613520255
+      k9-stomping_15: -8876209498798274336
+      k9-stomping_16: 4084044125798344566
+      k9-stomping_17: 6579916824400938898
+      k9-stomping_18: 2335950625737989379
+      k9-stomping_19: 3348666284497375871
+      k9-stomping_2: 1957696164745841915
+      k9-stomping_20: -5913048424596926634
+      k9-stomping_21: 7099147056755492749
+      k9-stomping_3: 8757124551239569771
+      k9-stomping_4: 6078753123881857479
+      k9-stomping_5: -5072025214796486248
+      k9-stomping_6: -5536371781266403557
+      k9-stomping_7: -2522001722916387627
+      k9-stomping_8: -5367073078489094410
+      k9-stomping_9: 6846825746965875785
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

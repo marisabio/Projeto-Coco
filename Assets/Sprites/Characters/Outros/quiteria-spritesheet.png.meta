@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: 9e9e7018ad013a1c4a0a8fe97b552557
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1211520897913736573
+    second: quiteria-spritesheet_0
+  - first:
+      213: -2027007589357890388
+    second: quiteria-spritesheet_1
+  - first:
+      213: 2089209067066727290
+    second: quiteria-spritesheet_2
+  - first:
+      213: 831221067594202554
+    second: quiteria-spritesheet_3
+  - first:
+      213: 3876493091625667447
+    second: quiteria-spritesheet_4
+  - first:
+      213: 8016722473285072337
+    second: quiteria-spritesheet_5
+  - first:
+      213: 7204622706278732279
+    second: quiteria-spritesheet_6
+  - first:
+      213: -7400644173373027616
+    second: quiteria-spritesheet_7
+  - first:
+      213: 474044141220895002
+    second: quiteria-spritesheet_8
+  - first:
+      213: 344754397327042593
+    second: quiteria-spritesheet_9
+  - first:
+      213: 8696683463128178412
+    second: quiteria-spritesheet_10
+  - first:
+      213: 6286950958832545738
+    second: quiteria-spritesheet_11
+  - first:
+      213: -4306720500996992126
+    second: quiteria-spritesheet_12
+  - first:
+      213: 4796580082663060915
+    second: quiteria-spritesheet_13
+  - first:
+      213: -6744015706083506785
+    second: quiteria-spritesheet_14
+  - first:
+      213: -8609991556245314019
+    second: quiteria-spritesheet_15
+  - first:
+      213: -850448501591260016
+    second: quiteria-spritesheet_16
+  - first:
+      213: -8282633365095664125
+    second: quiteria-spritesheet_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 30
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: quiteria-spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 382b3e98920df2fe0800000000000000
+      internalID: -1211520897913736573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quiteria-spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 1
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca45d47465f9ed3e0800000000000000
+      internalID: -2027007589357890388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quiteria-spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 1
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7b9900d39c5efc10800000000000000
+      internalID: 2089209067066727290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quiteria-spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 1
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abdf5cf2827198b00800000000000000
+      internalID: 831221067594202554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quiteria-spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 1
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77b8a94ade11cc530800000000000000
+      internalID: 3876493091625667447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quiteria-spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 1
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d53c037d9e114f60800000000000000
+      internalID: 8016722473285072337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quiteria-spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 1
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f1157cfd26fbf360800000000000000
+      internalID: 7204622706278732279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quiteria-spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 1
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ea4909a551ab4990800000000000000
+      internalID: -7400644173373027616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quiteria-spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 1
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a19935582a4249600800000000000000
+      internalID: 474044141220895002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quiteria-spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 1
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 128ae6b3c40d8c400800000000000000
+      internalID: 344754397327042593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quiteria-spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 1
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ceed4cf5883d0b870800000000000000
+      internalID: 8696683463128178412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quiteria-spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 1
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acfe38d569cbf3750800000000000000
+      internalID: 6286950958832545738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quiteria-spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 1
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2839e27b5847b34c0800000000000000
+      internalID: -4306720500996992126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quiteria-spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 1
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b578dbfb20e09240800000000000000
+      internalID: 4796580082663060915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quiteria-spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 1
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f95cc3752717862a0800000000000000
+      internalID: -6744015706083506785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quiteria-spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 1
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d16a2ea1c4a238880800000000000000
+      internalID: -8609991556245314019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quiteria-spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 1
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 094c3eaf7999234f0800000000000000
+      internalID: -850448501591260016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quiteria-spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 1
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 306bca476dc2e0d80800000000000000
+      internalID: -8282633365095664125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      quiteria-spritesheet_0: -1211520897913736573
+      quiteria-spritesheet_1: -2027007589357890388
+      quiteria-spritesheet_10: 8696683463128178412
+      quiteria-spritesheet_11: 6286950958832545738
+      quiteria-spritesheet_12: -4306720500996992126
+      quiteria-spritesheet_13: 4796580082663060915
+      quiteria-spritesheet_14: -6744015706083506785
+      quiteria-spritesheet_15: -8609991556245314019
+      quiteria-spritesheet_16: -850448501591260016
+      quiteria-spritesheet_17: -8282633365095664125
+      quiteria-spritesheet_2: 2089209067066727290
+      quiteria-spritesheet_3: 831221067594202554
+      quiteria-spritesheet_4: 3876493091625667447
+      quiteria-spritesheet_5: 8016722473285072337
+      quiteria-spritesheet_6: 7204622706278732279
+      quiteria-spritesheet_7: -7400644173373027616
+      quiteria-spritesheet_8: 474044141220895002
+      quiteria-spritesheet_9: 344754397327042593
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

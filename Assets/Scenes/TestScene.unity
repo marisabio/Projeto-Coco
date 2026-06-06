@@ -1713,8 +1713,8 @@ Transform:
   m_GameObject: {fileID: 2046718772}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.7, y: -6.61, z: 0}
-  m_LocalScale: {x: 20.603468, y: 1.6164155, z: 1}
+  m_LocalPosition: {x: -28.7354, y: -6.78, z: 0}
+  m_LocalScale: {x: 32.675037, y: 1.9565094, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 958120277}
@@ -2156,6 +2156,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: maxHealth
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: unlockEggAttack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: unlockDoubleJump
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2240,7 +2252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1461834669513337006, guid: 64152b728d770db28877ed7f44996933, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.867
+      value: -4.84
       objectReference: {fileID: 0}
     - target: {fileID: 1461834669513337006, guid: 64152b728d770db28877ed7f44996933, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2274,6 +2286,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2909293265794894706, guid: 64152b728d770db28877ed7f44996933, type: 3}
+      propertyPath: m_Size.y
+      value: 2.033255
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909293265794894706, guid: 64152b728d770db28877ed7f44996933, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.08334613
+      objectReference: {fileID: 0}
+    - target: {fileID: 5444549465896916201, guid: 64152b728d770db28877ed7f44996933, type: 3}
+      propertyPath: maxHealth
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7819640437352856794, guid: 64152b728d770db28877ed7f44996933, type: 3}
       propertyPath: m_Name
       value: K9
@@ -2290,6 +2314,18 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1168934871}
+    - target: {fileID: 9057507218543432124, guid: 64152b728d770db28877ed7f44996933, type: 3}
+      propertyPath: moveSpeed
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 9057507218543432124, guid: 64152b728d770db28877ed7f44996933, type: 3}
+      propertyPath: minDistance
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 9057507218543432124, guid: 64152b728d770db28877ed7f44996933, type: 3}
+      propertyPath: activeDistance
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 9057507218543432124, guid: 64152b728d770db28877ed7f44996933, type: 3}
       propertyPath: attackDuration
       value: 0.4
