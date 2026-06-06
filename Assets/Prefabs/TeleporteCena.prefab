@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 133990848045816909}
   - component: {fileID: 7354115662904794137}
   - component: {fileID: 3247598646423664344}
+  - component: {fileID: 8069852770261067046}
   m_Layer: 0
   m_Name: TeleporteCena
   m_TagString: Interactable
@@ -120,3 +121,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelIndex: 1
+--- !u!114 &8069852770261067046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3075015666909292255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49e34aa06cb2735478967e5736071508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  painelDaUI: {fileID: 0}
+  campoDeTexto: {fileID: 0}
+  textoPersonalizado: 
