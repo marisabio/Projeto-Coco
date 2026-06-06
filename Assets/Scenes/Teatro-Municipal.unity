@@ -2621,7 +2621,7 @@ Transform:
   m_GameObject: {fileID: 1217592792}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.419796, y: -7.4433, z: -10}
+  m_LocalPosition: {x: -17.416142, y: -7.4432497, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2972,11 +2972,81 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1001 &1842145180
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1694019978215119544, guid: f6ed969321faf7b4cb37541c4a261943, type: 3}
+      propertyPath: m_margin.x
+      value: -192.77138
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694019978215119544, guid: f6ed969321faf7b4cb37541c4a261943, type: 3}
+      propertyPath: m_margin.z
+      value: 104.04428
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154622430797049992, guid: f6ed969321faf7b4cb37541c4a261943, type: 3}
+      propertyPath: nomeDaArea
+      value: Theatro municipal
+      objectReference: {fileID: 0}
+    - target: {fileID: 7328174867661811131, guid: f6ed969321faf7b4cb37541c4a261943, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.1586843
+      objectReference: {fileID: 0}
+    - target: {fileID: 7328174867661811131, guid: f6ed969321faf7b4cb37541c4a261943, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -22.02818
+      objectReference: {fileID: 0}
+    - target: {fileID: 7328174867661811131, guid: f6ed969321faf7b4cb37541c4a261943, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.09461016
+      objectReference: {fileID: 0}
+    - target: {fileID: 7328174867661811131, guid: f6ed969321faf7b4cb37541c4a261943, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7328174867661811131, guid: f6ed969321faf7b4cb37541c4a261943, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7328174867661811131, guid: f6ed969321faf7b4cb37541c4a261943, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7328174867661811131, guid: f6ed969321faf7b4cb37541c4a261943, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7328174867661811131, guid: f6ed969321faf7b4cb37541c4a261943, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7328174867661811131, guid: f6ed969321faf7b4cb37541c4a261943, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7328174867661811131, guid: f6ed969321faf7b4cb37541c4a261943, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638908496060458780, guid: f6ed969321faf7b4cb37541c4a261943, type: 3}
+      propertyPath: m_Name
+      value: NomeArea
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f6ed969321faf7b4cb37541c4a261943, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1217592797}
+  - {fileID: 1842145180}
   - {fileID: 610209444}
   - {fileID: 247019391}
   - {fileID: 284088372}
