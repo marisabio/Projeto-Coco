@@ -87,6 +87,8 @@ public class PlayerController : MonoBehaviour
     private float shootTimeCounter;
     private Vector3 shootDirection;
     private Vector2 attackImpulseVector;
+    private GameObject currentTeleporter;
+
 
     void OnEnable()
     {
@@ -268,6 +270,11 @@ public class PlayerController : MonoBehaviour
         if (interactAction.WasPressedThisFrame() && canInteract)
         {
             isInteracting = true;
+            
+            if (currentTeleporter != null)
+            {
+              transform.position = currentTeleporter.GetComponent<Teleporte>().GetDestination().position;
+            }
         }
 
     }
@@ -515,6 +522,14 @@ public class PlayerController : MonoBehaviour
                 isInteracting = false;
             }
         }
+
+        if (other.CompareTag("Teleporter"))
+        {
+            canInteract = true;
+
+            currentTeleporter = other.gameObject;
+            isInteracting = false;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -523,6 +538,15 @@ public class PlayerController : MonoBehaviour
         {
             canInteract = false;
         }
+        
+        if (other.CompareTag("Teleporter"))
+        {
+            if (other.gameObject == currentTeleporter)
+            {
+                currentTeleporter = null;
+                canInteract = false;
+            }   
+        } 
     }
 
     private void OnDrawGizmosSelected()

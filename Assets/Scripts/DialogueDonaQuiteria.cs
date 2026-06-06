@@ -11,7 +11,7 @@ public class DialogueDonaQuiteria : MonoBehaviour
     public void Interact()
     {
         Debug.Log("Teste");
-        dialogueControl.GetComponent<DialogueControl>().Speech(profile, speechText, actorName);
+        //dialogueControl.GetComponent<DialogueControl>().Speech(profile, speechText, actorName);
     }
 
 
