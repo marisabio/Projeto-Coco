@@ -19,6 +19,7 @@ public class K9Controller : MonoBehaviour
     [SerializeField] private float attackRadius;
     [SerializeField] private Transform player;
     [SerializeField] private LayerMask playerLayer;
+    public bool isAlive = true;
 
     private Vector2 playerPosition;
     private Vector2 dogPosition;
@@ -29,7 +30,6 @@ public class K9Controller : MonoBehaviour
     //private bool isAttacking = false;
     private bool isActive = false;
     private bool isTakingDamage = false;
-    private bool isAlive = true;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     private float direction = 1;
@@ -145,7 +145,6 @@ public class K9Controller : MonoBehaviour
         List<GameObject> hitList = new List<GameObject>();
 
         float randomAttack = UnityEngine.Random.Range(1,3);
-        Debug.Log(randomAttack);
         
         switch(randomAttack) 
         {

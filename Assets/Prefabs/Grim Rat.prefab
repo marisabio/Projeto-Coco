@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 6887015985540530506}
   - component: {fileID: 376674806013184541}
   - component: {fileID: 4887248283895477629}
-  - component: {fileID: 5428513626194158224}
+  - component: {fileID: 2952465319129442676}
   - component: {fileID: 9185354805234320343}
+  - component: {fileID: 8918054996624629601}
   m_Layer: 7
   m_Name: Grim Rat
   m_TagString: Enemy
@@ -285,7 +286,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5428513626194158224
+--- !u!114 &2952465319129442676
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -294,7 +295,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4859933897605788896}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 843235797b64f464496dfc3917f9c500, type: 3}
+  m_Script: {fileID: 11500000, guid: adbcd38d2d00c930881d2eeea1890819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
@@ -306,6 +307,21 @@ MonoBehaviour:
       - m_Target: {fileID: 9185354805234320343}
         m_TargetAssemblyTypeName: GrimRatController, Assembly-CSharp
         m_MethodName: KnockbackProcess
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8918054996624629601}
+        m_TargetAssemblyTypeName: GrimRatDialogue, Assembly-CSharp
+        m_MethodName: StartDialogue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -342,3 +358,24 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &8918054996624629601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4859933897605788896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e49162439251d569a2d4d7cc197bfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueObj: {fileID: 0}
+  speechText: {fileID: 0}
+  actorNameText: {fileID: 0}
+  profile: {fileID: 0}
+  playerController: {fileID: 0}
+  lines: []
+  names: []
+  profiles: []
+  textSpeed: 0

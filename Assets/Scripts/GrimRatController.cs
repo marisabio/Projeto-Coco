@@ -18,7 +18,8 @@ public class GrimRatController : MonoBehaviour
     [SerializeField] private float attackRadius;
     [SerializeField] private Transform player;
     [SerializeField] private LayerMask playerLayer;
-
+    public bool isAlive = true;
+    
     private Vector2 playerPosition;
     private Vector2 ratPosition;
     private float attackBufferTimeCounter;
@@ -27,7 +28,7 @@ public class GrimRatController : MonoBehaviour
     private bool isAttacking = false;
     private bool isActive = false;
     private bool isTakingDamage = false;
-    private bool isAlive = true;
+    
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     private float direction = 1;

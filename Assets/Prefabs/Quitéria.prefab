@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 103206444527489854}
   - component: {fileID: 3140518101565399653}
   - component: {fileID: 732475979933432605}
+  - component: {fileID: 1851529181722156019}
   m_Layer: 0
   m_Name: "Quit\xE9ria"
   m_TagString: Untagged
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -1211520897913736573, guid: 9e9e7018ad013a1c4a0a8fe97b552557, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -100,7 +101,7 @@ Animator:
   m_GameObject: {fileID: 2020545243990010276}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1da7757720083446c87bed8402fdb437, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -173,3 +174,23 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1851529181722156019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020545243990010276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b36c27aaf5c646a40a914f07af492383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueObj: {fileID: 0}
+  speechText: {fileID: 0}
+  actorNameText: {fileID: 0}
+  profile: {fileID: 0}
+  lines: []
+  names: []
+  profiles: []
+  textSpeed: 0

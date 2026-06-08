@@ -7,30 +7,23 @@ using UnityEngine.UI;
 public class DialogueControl : MonoBehaviour
 {
     public GameObject dialogueObj;
-    //public Image[] profile;
     public TextMeshProUGUI speechText;
     public TextMeshProUGUI actorNameText;
+    public Image profile;
+    public PlayerController playerController;
 
     public string[] lines;
-    //public string[] names;
+    public string[] names;
+    public Sprite[] profiles;
+    
     public float textSpeed;
 
     private int index;
-
-    // public void Speech(Sprite p, string txt, string actorName)
-    //{
-    //if (!dialogueObj.activeSelf)
-    //   {
-    //      dialogueObj.SetActive(true);
-    //      profile[i].sprite = p;
-    //       speechText[i].text = txt;
-    //      actorNameText[i].text = actorName;
-    //  }
-    //}
-
-    void Update()
+    private Collider2D col;
+    
+    void Start()
     {
-        
+        col = GetComponent<Collider2D>();
     }
 
     public void StartDialogue()
@@ -38,6 +31,7 @@ public class DialogueControl : MonoBehaviour
         if (!dialogueObj.activeSelf)
         {
             dialogueObj.SetActive(true);
+            playerController.DisableCharacterControl();
             speechText.text = string.Empty;
             index = 0;
             StartCoroutine(TypeLine());
@@ -55,6 +49,8 @@ public class DialogueControl : MonoBehaviour
 
     private IEnumerator TypeLine()
     {
+        actorNameText.text = names[index];
+        profile.sprite = profiles[index];
         foreach (char c in lines[index].ToCharArray())
         {
             speechText.text += c;
@@ -72,8 +68,12 @@ public class DialogueControl : MonoBehaviour
         }
         else
         {
+            playerController.EnableCharacterControl();
             dialogueObj.SetActive(false);
+            col.enabled = false;
         }
     }
+
+    
 
 }

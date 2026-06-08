@@ -11,7 +11,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void Jogar()
     {
-      SceneManager.LoadScene(1);
+      SceneManager.LoadScene(2);
+      PlayerPrefs.DeleteAll();
       PlayerPrefs.SetFloat("health", 3);
     }
     public void AbrirCreditos()

@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float attackDuration;
     [SerializeField] private Transform attackPosition;
     [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private LayerMask bossLayer;
 
     [Header ("Egg Settings")]
     [SerializeField] private GameObject eggProjectile;
@@ -50,15 +51,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip jump;
     
     [Header ("Input Settings")] 
-    [SerializeField] private InputAction jumpAction;
-    [SerializeField] private InputAction movementAction;
-    [SerializeField] private InputAction attackAction;
-    [SerializeField] private InputAction interactAction;
-    [SerializeField] private InputAction shootingAction;
+    public InputAction jumpAction;
+    public InputAction movementAction;
+    public InputAction attackAction;
+    public InputAction interactAction;
+    public InputAction shootingAction;
 
     [Header ("Unlock Settings")] 
-    [SerializeField] private bool unlockDoubleJump;
-    [SerializeField] private bool unlockEggAttack;
+    public bool unlockDoubleJump;
+    public bool unlockEggAttack;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -78,6 +79,7 @@ public class PlayerController : MonoBehaviour
     private bool isInteracting = false;
     private bool canInteract = false;
     private bool isTakingDamage = false;
+    
     private float horizontalInput;
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
@@ -92,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
     void OnEnable()
     {
-        EnableCharacterControl();
+        
     }
 
     void Start()
@@ -103,6 +105,8 @@ public class PlayerController : MonoBehaviour
         col = GetComponent<Collider2D>();
         audioSource = GetComponent<AudioSource>();
         mainMaterial = spriteRenderer.material;
+
+        EnableCharacterControl();
 
         if (PlayerPrefs.GetFloat("health") <= 0)
         {
@@ -119,6 +123,16 @@ public class PlayerController : MonoBehaviour
         if (isActive)
         {
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        }
+
+        if (PlayerPrefs.GetFloat("canDoubleJump") == 1)
+        {
+            unlockDoubleJump = true;
+        }
+
+        if (PlayerPrefs.GetFloat("canEggAttack") == 1)
+        {
+            unlockEggAttack = true;
         }
 
         PlayerPrefs.SetFloat("health", currentHealth);
@@ -301,6 +315,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator StartAttack()
     {
         List<GameObject> enemies = new List<GameObject>();
+        List<GameObject> bosses = new List<GameObject>();
         animator.SetBool("isAttacking", true);
         attackTimeCounter = 0f;
         isAttacking = true;
@@ -330,6 +345,18 @@ public class PlayerController : MonoBehaviour
                 }
                 enemies.Add(enemy.gameObject);
                 enemy.GetComponent<EnemyDamageController>().TakeDamage(attackDamage);
+                Debug.Log("Hit!!");
+            }
+
+            Collider2D[] hitBosses = Physics2D.OverlapCircleAll(attackPosition.position, attackRadius, bossLayer);
+            foreach (Collider2D boss in hitBosses)
+            {
+                if (bosses.Contains(boss.gameObject))
+                {
+                    continue;
+                }
+                bosses.Add(boss.gameObject);
+                boss.GetComponent<BossDamageController>().TakeDamage(attackDamage);
                 Debug.Log("Hit!!");
             }
         
@@ -468,18 +495,32 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene(currentScene);
     }
 
-    private void DisableCharacterControl()
+    public void DisableCharacterControl()
     {
         attackAction.Disable();
         jumpAction.Disable();
         movementAction.Disable();
-        interactAction.Disable();
+        shootingAction.Disable();
+        enableHorizontalControl = false;
+        enableVerticalControl = false;
+        rb.linearVelocity = Vector2.zero;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        horizontalInput = 0;
+        animator.SetBool("isWalking", false);
+        animator.Play("Idle");
+    }
+
+    private void TempDisableCharacterControl()
+    {
+        attackAction.Disable();
+        jumpAction.Disable();
+        movementAction.Disable();
         shootingAction.Disable();
         enableHorizontalControl = false;
         enableVerticalControl = false;
     }
 
-    private void EnableCharacterControl()
+    public void EnableCharacterControl()
     {
         attackAction.Enable();
         jumpAction.Enable();
@@ -488,15 +529,27 @@ public class PlayerController : MonoBehaviour
         shootingAction.Enable();
         enableHorizontalControl = true;
         enableVerticalControl = true;
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
 
+    private void TempEnableCharacterControl()
+    {
+        attackAction.Enable();
+        jumpAction.Enable();
+        movementAction.Enable();
+        interactAction.Enable();
+        shootingAction.Enable();
+        enableHorizontalControl = true;
+        enableVerticalControl = true;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.CompareTag("Enemy"))
+        if (other.collider.CompareTag("Enemy") || other.collider.CompareTag("Boss"))
         {
             isTakingDamage = true;
-            DisableCharacterControl();
+            TempDisableCharacterControl();
             StartFlashDamage();
             audioSource.PlayOneShot(hurt);
             Debug.Log("Damage!");
@@ -504,7 +557,7 @@ public class PlayerController : MonoBehaviour
             Vector2 knockbackDirection = (transform.position - other.collider.transform.position).normalized;
             rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
             Invoke(nameof(EndFlashDamage), knockbackDuration);
-            Invoke(nameof(EnableCharacterControl), knockbackDuration);
+            Invoke(nameof(TempEnableCharacterControl), knockbackDuration);
             isTakingDamage = false;
         }
     }

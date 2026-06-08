@@ -1,5 +1,5 @@
 using UnityEngine;
-using TMPro; // Necessário para o texto TextMeshPro
+using TMPro;
 
 public class ExibirUIPorProximidade : MonoBehaviour
 {
@@ -26,11 +26,11 @@ public class ExibirUIPorProximidade : MonoBehaviour
         // Verifica se quem entrou foi o Player
         if (other.CompareTag("Player"))
         {
-            if (painelDaUI != null && campoDeTexto != null)
-            {
+            //if (painelDaUI == null && campoDeTexto == null)
+            //{
                 campoDeTexto.text = textoPersonalizado; // Altera para o texto desta área
                 painelDaUI.SetActive(true);             // Mostra a imagem com o texto
-            }
+            //}
         }
     }
 
