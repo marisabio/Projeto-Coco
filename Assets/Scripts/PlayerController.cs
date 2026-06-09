@@ -88,14 +88,8 @@ public class PlayerController : MonoBehaviour
     private float attackTimeCounter;
     private float shootTimeCounter;
     private Vector3 shootDirection;
-    private Vector2 attackImpulseVector;
+    //private Vector2 attackImpulseVector;
     private GameObject currentTeleporter;
-
-
-    void OnEnable()
-    {
-        
-    }
 
     void Start()
     {
@@ -184,6 +178,7 @@ public class PlayerController : MonoBehaviour
             if (isGrounded)
             {
                 coyoteTimeCounter = coyoteTime;
+                hasJumped = false;
             }
             else
             {
@@ -198,6 +193,7 @@ public class PlayerController : MonoBehaviour
                 if ((coyoteTimeCounter > 0f && jumpBufferCounter > 0f) || canDoubleJump) 
                 {
                     isJumping = true;
+                    hasJumped = true;
                     animator.Play("Jumping");
                     audioSource.PlayOneShot(jump);
                     coyoteTimeCounter = 0f;
@@ -210,7 +206,6 @@ public class PlayerController : MonoBehaviour
                         jumpAcceleration = jumpMaxAcceleration * (1 - velocityRatio);
                         rb.linearVelocityY += jumpAcceleration * Time.deltaTime;
                         animator.SetBool("isFalling", true);
-                        hasJumped = true;
                     }
                 }
 
@@ -273,7 +268,6 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool("isFalling", false);
                 animator.SetBool("isLanding", true);
-                hasJumped = false;
             }
         }
     }
@@ -322,17 +316,17 @@ public class PlayerController : MonoBehaviour
         col.isTrigger = true;
         attackAction.Disable();
         
-        if (isFacingRight)
-        {
-            attackImpulseVector = new Vector2(-attackImpulse, rb.linearVelocityY);
-        }
-        else if (!isFacingRight)
-        {
-            attackImpulseVector = new Vector2(attackImpulse, rb.linearVelocityY);
-        }
+       // if (isFacingRight)
+        //{
+        //    attackImpulseVector = new Vector2(-attackImpulse, rb.linearVelocityY);
+        //}
+        //else if (!isFacingRight)
+        //{
+        //    attackImpulseVector = new Vector2(attackImpulse, rb.linearVelocityY);
+        //}
 
         rb.constraints = RigidbodyConstraints2D.FreezePositionY;
-        rb.AddForce(attackImpulseVector, ForceMode2D.Force);
+        //rb.AddForce(attackImpulseVector, ForceMode2D.Force);
         
         while (attackTimeCounter <= attackDuration)
         {

@@ -171764,7 +171764,7 @@ PrefabInstance:
       objectReference: {fileID: 1809225562}
     - target: {fileID: 8918054996624629601, guid: b94595d0043406168a4d01c8df7dfdc2, type: 3}
       propertyPath: textSpeed
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8918054996624629601, guid: b94595d0043406168a4d01c8df7dfdc2, type: 3}
       propertyPath: speechText
@@ -187097,7 +187097,7 @@ MonoBehaviour:
   - {fileID: -7602329777645717393, guid: 5d31dfd86c53e9385a7f95358c757611, type: 3}
   - {fileID: -7602329777645717393, guid: 5d31dfd86c53e9385a7f95358c757611, type: 3}
   - {fileID: -7602329777645717393, guid: 5d31dfd86c53e9385a7f95358c757611, type: 3}
-  textSpeed: 0.1
+  textSpeed: 0.05
 --- !u!114 &1208132495
 MonoBehaviour:
   m_ObjectHideFlags: 0

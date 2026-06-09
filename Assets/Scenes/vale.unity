@@ -323,6 +323,10 @@ PrefabInstance:
       value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
+      propertyPath: unlockEggAttack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633373830731755025, guid: 163019e5e1236f7319c2c0cbf8d3bb20, type: 3}
       propertyPath: unlockDoubleJump
       value: 1
       objectReference: {fileID: 0}
